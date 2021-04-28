@@ -1,0 +1,2561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AIML Documentation :: Lemur Docs</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lemur Engine chatbot documentation - all supported AIML tags">
+    <meta name="author" content="Lemur Engine">
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- Lemur Engine CSS -->
+    <link rel="stylesheet" href="https://portal.lemurengine.com/widgets/popup/chat.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-69T7729BGS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-69T7729BGS');
+    </script>
+    
+</head> 
+
+<body class="body-pink">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="index.html">
+                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                            <span class="text-highlight">Lemur</span><span class="text-bold">Docs</span>
+                        </a>
+                    </h1>
+                </div><!--//branding-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.html">Docs</a></li>
+                    <li class="breadcrumb-item active">AIML Tags</li>
+                </ol>
+            </div><!--//container-->
+        </header><!--//header-->
+        <div class="doc-wrapper">
+            <div class="container">
+                <div id="doc-header" class="doc-header text-center">
+                    <h1 class="doc-title"><span aria-hidden="true" class="icon icon_puzzle_alt"></span> Supported AIML Tags</h1>
+                    <div class="meta"><i class="far fa-clock"></i> Last updated: Mar 15th, 2021</div>
+                </div><!--//doc-header-->
+                <div class="doc-body row" >
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- BOT TAG -------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="bot" class="doc-section">
+                                <h2 class="section-title">&lt;bot /></h2>
+                                <div class="section-block">
+                                    <p>This tag allows you to access bot properties (which are stored in the database).</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following examples will fetch a 'favmusic' value from the bot_properties table</p>
+<pre><code class="language-markup">&lt;bot name="favmusic" /&gt;
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Tag Attributes</h6>
+                                        <p>If any of the attributes below are missing the tag might not behave as expected.</p>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Name</th>
+                                                        <th>Type</th>
+                                                        <th>Description</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td>name</td>
+                                                        <td>string</td>
+                                                        <td>the name of the property you wish to retrieve</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div><!--//table-responsive-->
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern&gt;WHAT IS YOUR FAVORITE MUSIC&lt;/pattern&gt;
+        &lt;template&gt;My favorite music is &lt;bot name="favmusic" /&gt;&lt;/template&gt;
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"What is your favourite music?",
+    "bot":"My favorite name is house music"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- CONDITION TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="condition" class="doc-section">
+                                <h2 class="section-title">&lt;condition></h2>
+                                <div class="section-block">
+                                    <p>The condition tag is used to switch between responses based upon a certain condition being true.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following example states check the value of the variable 'state' and match the value in the proceeding &lt;li> tags to work out if a response should be displayed and if there is no match use the final &lt;li> tag which has no conditional value. </p>
+                                        <pre><code class="language-markup">&lt;condition name="state">
+    &lt;li value="bored">Yes I am very bored.&lt;/li>
+    &lt;li value="busy">No I am quite busy.&lt;/li>
+    &lt;li>I am not really sure.&lt;/li>
+&lt;/condition>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Tag Attributes</h6>
+                                    <p>If any of the attributes below are missing the tag might not behave as expected.</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>name</td>
+                                                <td>string</td>
+                                                <td>Looks in the global 'name' variables for a matching variable with the same name.</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>var</td>
+                                                <td>string</td>
+                                                <td>Looks in the local 'var' variables for a matching variable with the same name.</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>ARE YOU BORED&lt;/pattern>
+        &lt;template>
+          &lt;think>&lt;set name="state">busy&lt;/set>&lt;/think>
+          &lt;condition name="state">
+            &lt;li value="bored">Yes I am very bored.&lt;/li>
+            &lt;li value="busy">No I am quite busy.&lt;/li>
+            &lt;li>I am not really sure.&lt;/li>
+          &lt;/condition>
+        &lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"Are you bored?",
+    "bot":"No I am quite busy."
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- DATE TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="date" class="doc-section">
+                                <h2 class="section-title">&lt;date /></h2>
+                                <div class="section-block">
+                                    <p>This tag will display the current date in a format and timezone of your choosing.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following examples will return the current date in the %Xformat</p>
+                                        <pre><code class="language-markup">&lt;date format="%X" /&gt;
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Tag Attributes</h6>
+                                    <p>If any of the attributes below are missing the tag might not behave as expected.</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Default</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>locale</td>
+                                                <td>string</td>
+                                                <td>en_US</td>
+                                                <td>Help on locale codes <a href="https://stackoverflow.com/questions/3191664/list-of-all-locales-and-their-short-codes">stackoverflow</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>format</td>
+                                                <td>string</td>
+                                                <td>%B %d %Y</td>
+                                                <td>For a full list of allowed formats: <a href="https://www.php.net/manual/en/function.strftime.php">php.net/function.strftime</a></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td>timezone</td>
+                                                <td>string</td>
+                                                <td>en_US</td>
+                                                <td>Help on available </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern&gt;WHAT IS THE DATE&lt;/pattern&gt;
+        &lt;template&gt;The date is &lt;date format="%X" /&gt;&lt;/template&gt;
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"What the date?",
+    "bot":"The date is 01/12/21"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- DENORMALIZE TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="denormalize" class="doc-section">
+                                <h2 class="section-title">&lt;denormalize></h2>
+                                <div class="section-block">
+                                    <p>When inputs are normalized a dataset is built up in the normalizations table, this tag will attempt to substitute the value the user want to denormalize back to its normalized value.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following examples will attempt to denormalize the value 'google dot com'.</p>
+                                        <pre><code class="language-markup">&lt;denormalize&gt;google dot com&lt;/denormalize&gt;
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern&gt;DENORMALIZE *&lt;/pattern&gt;
+        &lt;template&gt;&lt;denormalize&gt;&lt;star/&gt;&lt;/denormalize&gt;&lt;/template&gt;
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"Denormalize google dot com",
+    "bot":"google dot com"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- EVAL TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="eval" class="doc-section">
+                                <h2 class="section-title">&lt;eval></h2>
+                                <div class="section-block">
+                                    <p>The eval tag is used inside a learn tag and its allows you to substitute the item to evaluate in the category that is being taught.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following example sets the subject of the question.</p>
+                                        <pre><code class="language-markup">WHAT COLOR IS THE &lt;eval>&lt;star />&lt;/eval>
+</code></pre>
+                                        <p>The following example sets the subject of the answer.</p>
+                                        <pre><code class="language-markup">The &lt;eval>&lt;star />&lt;/eval> is blue
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>THE * IS GRASS&lt;/pattern>
+        &lt;template>
+          I will remember that the &lt;star /> is green.
+          &lt;learn>
+            &lt;category>
+            &lt;pattern>WHAT COLOR IS THE &lt;eval>&lt;star />&lt;/eval>&lt;/pattern>
+            &lt;template>The &lt;eval>&lt;star />&lt;/eval> is green&lt;/template>
+            &lt;/category>
+          &lt;/learn>
+        &lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":[
+    {
+        "user":"The grass is green.",
+        "bot":"I will remember that the grass is green."
+    },
+    {
+        "user":"What color is the grass?",
+        "bot":"The grass is green."
+    }
+]}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- EVALUATE TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="evaluate" class="doc-section">
+                                <h2 class="section-title">&lt;evaluate></h2>
+                                <div class="section-block">
+                                    <p>The evaluate tag is an alias for the the eval tag. Please see the <a class="scrollto" href="#eval">eval tag</a> for details.</p>
+                                </div>
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- EXPLODE TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="explode" class="doc-section">
+                                <h2 class="section-title">&lt;explode></h2>
+                                <div class="section-block">
+                                    <p>The explode tag is break a word into its letters (with a space in between each letter)</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following example will explode the word 'word'.</p>
+                                        <pre><code class="language-markup">&lt;explode>word&lt;/explode>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>EXPLODE THIS WORD&lt;/pattern>
+        &lt;template>&lt;explode>word&lt;/explode>&lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"Explode this word",
+        "bot":"w o r d"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- FEATURE TAG ----------------------------->
+                            <!------------------------------------------------------------------------->
+                            <section id="feature" class="doc-section">
+                                <h2 class="section-title">&lt;feature></h2>
+                                <div class="section-block">
+                                    <p>The feature tag allows you to set and return information in the features field of the response</p>
+                                    <p>This is not part of the conversation but is a way of adding extra features to your response</p>
+                                    <p>Features are a key pair value and your key can be anything you wish. It is up to your own front end application on how you interpret it.</p>
+                                    <p>A good example of this implementation is the <a href="https://lemurengine.com/avatar.html">avatar chat demo</a>. 'bot_mood' features are used to control the expression of the avatar in the front end. Why not test this out by telling the bot you love it.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;feature name="client_mood">&lt;star/>&lt;/feature>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>I AM FEELING SO *&lt;/pattern>
+        &lt;template>Why do you feel &lt;star />?&lt;feature name="client_mood">&lt;star/>&lt;/feature>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Response</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"data": {
+        "conversation": {
+            "input": "I feel so happy",
+            "output": "Why do you feel so happy?",
+            "id": "b5ee10dc-4a15-4c60-951b-9962d3d387a2",
+            "topic": ""
+        },
+        "features": {
+            "client_mood": "happy"
+        }
+    },
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- FIRST TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+                            <section id="first" class="doc-section">
+                                <h2 class="section-title">&lt;first></h2>
+                                <div class="section-block">
+                                    <p>The first tag returns the first word found in its wildcards contents</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;first>&lt;star/>&lt;/first>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>TELL ME THE FIRST ITEM IN THIS LIST *&lt;/pattern>
+        &lt;template>&lt;first>&lt;star/>&lt;/first>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"Tell me the first item in this list a b c",
+        "bot":"a"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- FORMAL TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="formal" class="doc-section">
+                                <h2 class="section-title">&lt;formal></h2>
+                                <div class="section-block">
+                                    <p>The formal tag is used to capitalise each word in a sentence.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;formal>this is the title of my paper&lt;/formal>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>FORMALIZE THE TITLE OF MY BOOK&lt;/pattern>
+        &lt;template>&lt;formal>&lt;star/>&lt;/formal>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"formalize the title of my book",
+        "bot":"The Title Of My Book"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- GENDER TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="gender" class="doc-section">
+                                <h2 class="section-title">&lt;gender></h2>
+                                <div class="section-block">
+                                    <p>The gender tag is used to look up third person gender transformations from the word_transformations table.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">They took &lt;gender>&lt;star/>&lt;/gender> dinner
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>DID THEY TAKE HER DINNER&lt;/pattern>
+        &lt;template>No, they took &lt;gender>&lt;star/>&lt;/gender> dinner!&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"Did they take her dinner?",
+        "bot":"No, they took his dinner!"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- GET TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="get" class="doc-section">
+                                <h2 class="section-title">&lt;get /></h2>
+                                <div class="section-block">
+                                    <p>This tag is used to return the value of a predicate.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following examples will return the value of a global variable named "dinner"</p>
+                                        <pre><code class="language-markup">&lt;get name="dinner" /&gt;
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Tag Attributes</h6>
+                                    <p>If any of the attributes below are missing the tag might not behave as expected.</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>name</td>
+                                                <td>string</td>
+                                                <td>Looks in the global 'name' variables for a matching variable with the same name and returns it value.</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>var</td>
+                                                <td>string</td>
+                                                <td>Looks in the local 'var' variables for a matching variable with the same name and returns it value.</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern>WHAT IS ARE YOU EATING FOR DINNER&lt;/pattern>
+        &lt;template>
+            &lt;think>&lt;set name="dinner">noodles&lt;/set>&lt;/think>
+            I am having &lt;get name="dinner" /> for dinner.
+        &lt;/template>
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"What are you having for dinner?",
+    "bot":"I am having noodles for dinner"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- GOSSIP TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="gossip" class="doc-section">
+                                <h2 class="section-title">&lt;gossip></h2>
+                                <div class="section-block">
+                                    <p>The gossip tag is used store tidbits of gossip from the client.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;learn>&lt;gossip>&lt;star/>&lt;/gossip>&lt;/learn>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>DID YOU HEAR THAT *&lt;/pattern>
+        &lt;template>Interesting gossip!&lt;learn>&lt;gossip>&lt;star/>&lt;/gossip>&lt;/learn>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":[
+    {
+        "user":"Did they hear that Harry met Sally?",
+        "bot":"Interesting gossip!"
+    },
+    {
+        "user":"Tell me some gossip",
+        "bot":"Harry met Sally"
+    }
+]}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- ID TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="id" class="doc-section">
+                                <h2 class="section-title">&lt;id /></h2>
+                                <div class="section-block">
+                                    <p>The id tag returns the current conversation id.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">The conversation id is &lt;id/>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>WHAT IS THE CONVERSATION ID&lt;/pattern>
+        &lt;template>The conversation id is &lt;id/>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"What is the conversation id?",
+        "bot":"The conversation id is bot-john-4726952"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- INPUT TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="input" class="doc-section">
+                                <h2 class="section-title">&lt;input /></h2>
+                                <div class="section-block">
+                                    <p>The input tag returns the users last sentence.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>Get the last sentence</p>
+                                        <pre><code class="language-markup">You said: &lt;input />
+</code></pre>
+                                        <p>Get the second to last input</p>
+                                        <pre><code class="language-markup">Before this you said: &lt;input index="2"/>
+</code></pre>
+                                   <p>Consider the user input: "Hello! How are you?</p>
+                                        <pre><code class="language-markup">Hello! = &lt;input index="1,2"/>
+</code></pre>
+                                        <pre><code class="language-markup">How are you? = &lt;input index="1,1"/>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Tag Attributes</h6>
+                                    <p>These attributes are optional</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                                <th>Example</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>index</td>
+                                                <td>integer</td>
+                                                <td>The index of the input you wish to get</td>
+                                                <td>index="2"</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>WHAT DID I SAY&lt;/pattern>
+        &lt;template>You said: '&lt;input />'&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"What did I say?",
+        "bot":"You said: 'What did I say?'"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- JAVASCRIPT TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="javascript" class="doc-section">
+                                <h2 class="section-title">&lt;javascript></h2>
+                                <div class="section-block">
+                                    <p>The javascript tag returns javascript code inside a  safe [script][/script] block. You will have to convert the [script][\script] tag to a &lt;script>&lt;/script> in your own front end.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;javascript>alert('hi')&lt;/javascript>
+</code></pre>
+
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>ALERT *&lt;/pattern>
+        &lt;template>&lt;javascript>alert('&lt;star />')&lt;/javascript>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"Alert hello",
+        "bot":"[script]alert('hello')[/script]"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!-------------------------------------------------------------------------->
+                            <!-------------------------------- LEARN TAG ------------------------------->
+                            <!-------------------------------------------------------------------------->
+
+                            <section id="learn" class="doc-section">
+                                <h2 class="section-title">&lt;learn></h2>
+                                <div class="section-block">
+                                    <p>The learn tag is used to teach the bot new things during the conversation.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;learn>
+    &lt;category>
+        &lt;pattern>WHAT DO I LIKE&lt;/pattern>
+        &lt;template>You like music.&lt;/template>
+    &lt;/category>
+&lt;/learn>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>I LIKE MUSIC&lt;/pattern>
+        &lt;template>
+            I will remember that you like music.
+            &lt;learn>
+                &lt;category>
+                    &lt;pattern>WHAT DO I LIKE&lt;/pattern>
+                    &lt;template>You like music.&lt;/template>
+                &lt;/category>
+            &lt;/learn>
+        &lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":[
+    {
+        "user":"I like music.",
+        "bot":"I will remember that you like music."
+    },
+    {
+        "user":"What do I like?",
+        "bot":"You like music."
+    }
+]}
+</code></pre>
+
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- LI TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="li" class="doc-section">
+                                <h2 class="section-title">&lt;li></h2>
+                                <div class="section-block">
+                                    <p>The li tag is used with a &lt;condition> or &lt;random> tag as a way of selecting an response from a list of responses.</p>
+                                    <p>If you want to use this tag inside a &lt;condition> then please see the <a class="scrollto" href="#condition">condition tag</a> for details.</p>
+                                    <p>If you want to use this tag inside a &lt;random> then please see the <a class="scrollto" href="#random">random tag</a> for details.</p>
+                                </div>
+                            </section><!--//section-->
+
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- LOOP TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="loop" class="doc-section">
+                                <h2 class="section-title">&lt;loop /></h2>
+                                <div class="section-block">
+                                    <p>The loop tag is used to iterate over a set of list item elements that are contained in a condition block.</p>
+                                    <p>The loop tags sits before the closing &lt;li/> to indicate that the if the condition of the li is not met then a loop should occur and if the condition is met the loop should break</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;li value='2'>&lt;think>&lt;set var='count_down'>1&lt;/set>&lt;/think>2 &lt;loop/>&lt;/li>
+</code></pre>
+
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+&lt;category>
+    &lt;pattern>COUNT DOWN FROM &lt;set>testnumber&lt;/set>&lt;/pattern>
+    &lt;template>
+        &lt;think>&lt;set var='count_down'>&lt;star/>&lt;/set>&lt;/think>
+        &lt;condition var='count_down'>
+            &lt;li value='5'>&lt;think>&lt;set var='count_down'>4&lt;/set>&lt;/think>5 &lt;loop/>&lt;/li>
+            &lt;li value='4'>&lt;think>&lt;set var='count_down'>3&lt;/set>&lt;/think>4 &lt;loop/>&lt;/li>
+            &lt;li value='3'>&lt;think>&lt;set var='count_down'>2&lt;/set>&lt;/think>3 &lt;loop/>&lt;/li>
+            &lt;li value='2'>&lt;think>&lt;set var='count_down'>1&lt;/set>&lt;/think>2 &lt;loop/>&lt;/li>
+            &lt;li value='1'>&lt;think>&lt;set var='count_down'>0&lt;/set>&lt;/think>1 &lt;/li>
+            &lt;li>&lt;/li>
+        &lt;/condition>
+    &lt;/template>
+&lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"Count down from 3",
+        "bot":"3 2 1"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- LOWERCASE TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="lowercase" class="doc-section">
+                                <h2 class="section-title">&lt;lowercase></h2>
+                                <div class="section-block">
+                                    <p>The lowercase tag is used to convert the output to lowercase.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;lowercase>THIS WILL BE LOWERCASE&lt;/lowercase>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>LOWERCASE *&lt;/pattern>
+        &lt;template>&lt;lowercase>&lt;star/>&lt;/lowercase>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"lowercase THIS INPUT",
+        "bot":"this input"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- MAP TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="map" class="doc-section">
+                                <h2 class="section-title">&lt;map></h2>
+                                <div class="section-block">
+                                    <p>The map tag is used to link a value to its map value. Map values are stored in the table map_values and are grouped by maps in the maps table.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following example will look up the mapped value of 'France' which belongs to the map called 'capital'.</p>
+                                        <pre><code class="language-markup">&lt;map name="capital">France&lt;/map> is the capital of France
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>WHAT IS THE CAPITAL OF *&lt;/pattern>
+        &lt;template>
+            &lt;map name="capital">&lt;star />&lt;/map> is the capital of &lt;star />
+        &lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"What is the capital of France?",
+        "bot":"Paris is the capital of France."
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- NAME TAG -------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="name" class="doc-section">
+                                <h2 class="section-title">&lt;name></h2>
+                                <div class="section-block">
+                                    <p>Maintained for backward compatibility - Do use this format if you can avoid it.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>Expanded format</p>
+                                        <pre><code class="language-markup">&lt;set>&lt;name>dinner&lt;/name>noodles&lt;/set>
+</code></pre>
+                                    </div>
+                                    <div class="code-block">
+                                        <p>Equivalent preferred format</p>
+                                        <pre><code class="language-markup">&lt;set name="dinner">noodles&lt;/set>
+</code></pre>
+                                    </div>
+
+                                </div>
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- NORMALIZE TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="normalize" class="doc-section">
+                                <h2 class="section-title">&lt;normalize></h2>
+                                <div class="section-block">
+                                    <p>Outputs the normalized value</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following examples will attempt to normalize the value 'google.com'.</p>
+                                        <pre><code class="language-markup">&lt;normalize&gt;google dot com&lt;/normalize&gt;
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern&gt;NORMALIZE *&lt;/pattern&gt;
+        &lt;template&gt;&lt;normalize&gt;&lt;star/&gt;&lt;/normalize&gt;&lt;/template&gt;
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"Normalize google.com",
+    "bot":"google dot com"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+                            
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- PERSON TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="person" class="doc-section">
+                                <h2 class="section-title">&lt;person></h2>
+                                <div class="section-block">
+                                    <p>The person tag is used to transform a pronoun between the first and second person. These transformations are stored in the word_transformations table.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">You are &lt;person>&lt;star/>&lt;/person>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>I AM *&lt;/pattern>
+        &lt;template>You are &lt;person>&lt;star/>&lt;/person>&lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"I am talking to you",
+        "bot":"You are talking to me"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- PERSON2 TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="person2" class="doc-section">
+                                <h2 class="section-title">&lt;person2></h2>
+                                <div class="section-block">
+                                    <p>The person2 tag is used to transform a pronoun between the first and third person. These transformations are stored in the word_transformations table.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">They are &lt;person2>&lt;star/>&lt;/person2>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>GIVE IT *&lt;/pattern>
+        &lt;template>I GAVE IT &lt;person>&lt;star/>&lt;/person>&lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+
+
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"Give it to me",
+        "bot":"I gave it to them"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- PROGRAM TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="program" class="doc-section">
+                                <h2 class="section-title">&lt;program /></h2>
+                                <div class="section-block">
+                                    <p>The program tag is an alias for the the version tag. Please see the <a class="scrollto" href="#version">version tag</a> for details.</p>
+                                </div>
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- RANDOM TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="random" class="doc-section">
+                                <h2 class="section-title">&lt;random></h2>
+                                <div class="section-block">
+                                    <p>The random tag is used with &lt;li> tags to provide a list of potential bot responses, one of which will be returned randomly.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following example will randomly pick 'yes' or 'no'.</p>
+                                        <pre><code class="language-markup">&lt;random>&lt;li>yes&lt;/li>&lt;li>no&lt;/li>&lt;/random>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>WHAT ARE YOU EATING FOR DINNER&lt;/pattern>
+        &lt;template>
+            &lt;random>
+                &lt;li>Spaghetti.&lt;/li>
+                &lt;li>Noodles.&lt;/li>
+                &lt;li>Curry.&lt;/li>
+                &lt;li>Chips.&lt;/li>
+            &lt;/random>
+        &lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"What are you eating for dinner?",
+        "bot":"Curry."
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- RATE TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="rate" class="doc-section">
+                                <h2 class="section-title">&lt;rate></h2>
+                                <div class="section-block">
+                                    <p>Can be used with or without attributes to set a bot ratings or to get bot ratings metrics.</p>
+                                    <p>Only numerical responses are counted towards the rating and the min/max are set to 0 and 5.</p>
+
+
+                                    <div class="section-block">
+                                        <h6>Name Tag Attributes</h6>
+                                        <p>These attributes are optional and are used when you want to retrieve certain metrics.</p>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Name attribute value</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>average</td>
+                                                    <td>The average rating of the bot</td>
+                                                    <td>&lt;rate name="average" /></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>count</td>
+                                                    <td>The number of ratings given</td>
+                                                    <td>&lt;rate name="count"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>min</td>
+                                                    <td>The minimum rating given</td>
+                                                    <td>&lt;rate name="min"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">4</th>
+                                                    <td>max</td>
+                                                    <td>The maximum rating given</td>
+                                                    <td>&lt;rate name="max"/></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div><!--//table-responsive-->
+                                    </div>
+
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>Rate the bot</p>
+                                        <pre><code class="language-markup">You have rated me &lt;rate>&lt;star />&lt;/rate> out of 5</code></pre>
+                                        <p>Get the bot rating</p>
+                                        <pre><code class="language-markup">I am rated &lt;rate name="average"/> out of 5</code></pre>
+                                    </div>
+
+                                    <div class="section-block">
+                                        <h6>Example Category</h6>
+                                        <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>I RATE YOU * STARS&lt;/pattern>
+        &lt;template>
+            You have rated me &lt;rate>&lt;star />&lt;/rate> out of 5
+        &lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+
+    &lt;category>
+        &lt;pattern>TELL ME YOUR RATING STATS&lt;/pattern>
+        &lt;template>
+            I am have been rated &lt;rate name="average" /> out of 5 by &lt;rate name="count" /> people.
+            My highest rating is &lt;rate name="max" /> and my lowest is &lt;rate name="min" />.
+        &lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                        </div><!--//code-block-->
+                                    </div><!--//section-block-->
+                                    <div class="section-block">
+                                        <h6>Example Conversation</h6>
+                                        <div class="code-block"><pre><code class="language-javascript">{
+"conversation": [
+    {
+        "user":"I rate you 5 stars",
+        "bot":"You have rated me 5 out of 5."
+    },
+    {
+        "user":"Tell me your rating stats",
+        "bot":"I am have been rated 4.3 out of 5 by 67 people. My highest rating is 5 and my lowest is 0."
+    }
+]}
+</code></pre>
+                                        </div><!--//code-block-->
+                                    </div><!--//section-block-->
+                                </div>
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- REQUEST TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="request" class="doc-section">
+                                <h2 class="section-title">&lt;request /></h2>
+                                <div class="section-block">
+                                    <p>The request tag returns the client's last full request.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>Get the client’s last input request, consisting of one or more input sentences.</p>
+                                        <pre><code class="language-markup">You said: &lt;request/>
+which is equivalent to: &lt;request index="1"/>
+</code></pre>
+                                        <p>Get the client’s 2nd to last input request, consisting of one or more input sentences.</p>
+                                        <pre><code class="language-markup">Before that you said: &lt;request index="2"/>
+</code></pre>
+                                    </div>
+
+
+                                </div>
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- RESPONSE TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="response" class="doc-section">
+                                <h2 class="section-title">&lt;response /></h2>
+                                <div class="section-block">
+                                    <p>The response tag returns the bot's last response.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>Get the last response</p>
+                                        <pre><code class="language-markup">I said: &lt;response />
+which is equivalent to: &lt;response index="1"/>
+</code></pre>
+                                        <p>Get the second to last response</p>
+                                        <pre><code class="language-markup">Before I you said: &lt;response index="2"/>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Tag Attributes</h6>
+                                    <p>These attributes are optional</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                                <th>Example</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>index</td>
+                                                <td>integer</td>
+                                                <td>The index of the input you wish to get</td>
+                                                <td>index="2"</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>WHAT DID YOU SAY&lt;/pattern>
+        &lt;template>I said: '&lt;request index="1"/>'&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":[
+    {
+        "user":"Hello",
+        "bot":"Hi"
+    },
+    {
+        "user":"What did you say?",
+        "bot":"I said: 'Hi'"
+    }
+]}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- REST TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+
+                            <section id="rest" class="doc-section">
+                                <h2 class="section-title">&lt;rest></h2>
+                                <div class="section-block">
+                                    <p>The rest tag returns all the words after the first word in its contents and applies to wildcards in patterns only.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;rest>&lt;star/>&lt;/rest>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>TELL ME THE REST OF ITEM IN THIS LIST *&lt;/pattern>
+        &lt;template>&lt;rest>&lt;star/>&lt;/rest>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"Tell me the rest of item in this list a b c",
+        "bot":"b c"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- SENTENCE TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="sentence" class="doc-section">
+                                <h2 class="section-title">&lt;sentence></h2>
+                                <div class="section-block">
+                                    <p>The sentence tag is used to capitalise the first word in a sentence.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;sentence>this is a sentence&lt;/sentence>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>CONVERT *&lt;/pattern>
+        &lt;template>&lt;sentence>&lt;star/>&lt;/sentence>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"convert my nicely formatted sentence.",
+        "bot":"My nicely formatted sentence."
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- SET TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="set" class="doc-section">
+                                <h2 class="section-title">&lt;set></h2>
+                                <div class="section-block">
+                                    <p>This tag is used to set the value of a predicate.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following examples will set the value of a global variable named "dinner" to 'noodles.</p>
+                                        <pre><code class="language-markup">&lt;set name="dinner">noodles&lt;set/>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Tag Attributes</h6>
+                                    <p>If any of the attributes below are missing the tag might not behave as expected.</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>name</td>
+                                                <td>string</td>
+                                                <td>Looks in the global 'name' variables for a matching variable with the same name and returns it value.</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td>var</td>
+                                                <td>string</td>
+                                                <td>Looks in the local 'var' variables for a matching variable with the same name and returns it value.</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern>I AM EATING * FOR MY DINNER&lt;/pattern>
+        &lt;template>
+            &lt;think>&lt;set name="dinner">&lt;star/>&lt;/set>&lt;/think>
+            You are having  &lt;get name="dinner" /> for dinner.
+        &lt;/template>
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"I am having noodles for dinner",
+    "bot":"You are having noodles for dinner"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- SIZE TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="size" class="doc-section">
+                                <h2 class="section-title">&lt;size /></h2>
+                                <div class="section-block">
+                                    <p>The size tag returns the number of categories the bot has access to.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">My brain is &lt;size/> categories big
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>HOW CLEVER ARE YOU&lt;/pattern>
+        &lt;template>My brain is &lt;size/> categories big.&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"How clever are you?",
+        "bot":"My brain is 100 categories big"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- SR TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="sr" class="doc-section">
+                                <h2 class="section-title">&lt;sr /></h2>
+                                <div class="section-block">
+                                    <p>The sr tag is an alias for for &lt;srai>&lt;star />&lt;/srai>. Please see the <a class="scrollto" href="#srai">srai tag</a> for details.</p>
+                                </div>
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- SRAI TAG ------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="srai" class="doc-section">
+                                <h2 class="section-title">&lt;srai></h2>
+                                <div class="section-block">
+                                    <p>The srai tag will research the database for a matching category.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>This tag will research the database for a category which matches 'HI'.</p>
+                                        <pre><code class="language-markup">&lt;srai>HI&lt;/srai>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>YO *&lt;/pattern>
+        &lt;template>&lt;srai>HI&lt;/srai>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"Yo",
+        "bot":"Hello!"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- SRAIX TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="sraix" class="doc-section">
+                                <h2 class="section-title">&lt;sraix></h2>
+                                <div class="section-block">
+                                    <p>This tag is not supported. You can easily link any category to any bot from within the admin area.</p>
+                                </div>
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- STAR TAG ------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="star" class="doc-section">
+                                <h2 class="section-title">&lt;star /></h2>
+                                <div class="section-block">
+                                    <p>The star tag is used to output portions of the user's input that were captured by wildcards.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">Your favorite &lt;star /> is &lt;star index="2" />
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>MY FAVORITE * IS *&lt;/pattern>
+        &lt;template>Your favorite &lt;star /> is &lt;star index="2" />
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"My favorite dinner is noodles",
+        "bot":"Your favorite dinner is noodles"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- THAT TAG ------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="that" class="doc-section">
+                                <h2 class="section-title">&lt;that></h2>
+                                <div class="section-block">
+                                    <p>The that tag is used provide context to a category before it can be matched. The category can only be used if the value of  &lt;that> matches the denormalized bot response.</p>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>YES&lt;/pattern>
+        &lt;that>DO YOU WANT TO EAT DINNER&lt;/that>
+        &lt;template>I do too.&lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":[
+    {
+        "user":"I am hungry",
+        "bot":"Do you want to eat dinner?"
+    },
+    {
+        "user":"Yes",
+        "bot":"I do too."
+    }
+]}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- THATSTAR TAG -------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="thatstar" class="doc-section">
+                                <h2 class="section-title">&lt;thatstar /></h2>
+                                <div class="section-block">
+                                    <p>The thatstar tag is used to echo portions of the bot's response that were captured by wildcards.</p>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>I LIKE IT TOO&lt;/pattern>
+        &lt;that>I LIKE *&lt;/that>
+        &lt;template>What is your favorite flavour of &lt;thatstar />&lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":[
+    {
+        "user":"I like cheese",
+        "bot":"I like pizza"
+    }, {
+        "user":"I like it too!",
+        "bot":"What is your favorite flavour of pizza?"
+    }
+]}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- THINK TAG -------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="think" class="doc-section">
+                                <h2 class="section-title">&lt;think></h2>
+                                <div class="section-block">
+                                    <p>The think tag allows to silently perform tag functions without outputting anything.</p>
+                                </div>
+                                <div class="code-block">
+                                    <h6>Tag Example</h6>
+                                    <p>This example sets a global variable called 'dinner' to 'noodles' - nothing is output in the response</p>
+                                    <pre><code class="language-markup"> &lt;think> &lt;set name="dinner">noodles &lt;/set> &lt;/think>
+</code></pre>
+                                </div>
+
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>MY DINNER IS *&lt;/pattern>
+        &lt;template>
+            &lt;think>&lt;set name="dinner">&lt;star />&lt;/set>&lt;/think>
+            I will remember your dinner
+        &lt;/template>
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"My dinner is noodles",
+        "bot":"I will remember your dinner"
+    }}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- TOPIC TAG -------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="topic" class="doc-section">
+                                <h2 class="section-title">&lt;topic></h2>
+                                <div class="section-block">
+                                    <p>If a category is wrapped in a topic the category can only be matched if topic is matched.</p>
+                                </div>
+
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>LETS CHANGE THE TOPIC TO *&lt;/pattern>
+        &lt;template>
+            Sure, we can talk about &lt;set name="topic">&lt;star />&lt;/set>
+        &lt;/template>
+    &lt;/category>
+
+    &lt;topic name="noodles">
+        &lt;category>
+            &lt;pattern>I LIKE THEM SPICY&lt;/pattern>
+            &lt;template>I like mine in soup&lt;/template>
+        &lt;/category>
+    &lt;/topic>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":[
+    {
+        "user":"Lets change the topic to noodles",
+        "bot":"Sure, we can talk about noodles"
+    },
+    {
+        "user":"I like them spicy",
+        "bot":"I like them in soup"
+    }
+]}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- TOPICSTAR TAG -------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="topicstar" class="doc-section">
+                                <h2 class="section-title">&lt;topicstar /></h2>
+                                <div class="section-block">
+                                    <p>The topicstar has two uses;</p>
+                                        <ul>
+                                            <li>Return the current topic if used outside of a topic element</li>
+                                            <li>Return the topic wildcard if used inside a topic element</li>
+                                        </ul>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Tag Attributes</h6>
+                                    <p>These attributes are optional</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                                <th>Example</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>index</td>
+                                                <td>integer</td>
+                                                <td>The index of the topic star you wish to get</td>
+                                                <td>index="2"</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                </div>
+
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>I WOULD LIKE SOME NOODLES&lt;/pattern>
+        &lt;template>
+            Ok.&lt;think>&lt;set name=”topic”>eat noodles&lt;/set>&lt;/think>
+        &lt;/template>
+    &lt;/category>
+
+    &lt;topic name="eat *">
+        &lt;category>
+            &lt;pattern>WHAT DO I WANT&lt;/pattern>
+            &lt;template>&lt;topicstar/>&lt;/template>
+        &lt;/category>
+    &lt;/topic>
+&lt;/aiml&gt;
+</code></pre>                   </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":[
+    {
+        "user":"I would like some noodles",
+        "bot":"Ok."
+    }, {
+        "user":"What do I want?",
+        "bot":"noodles"
+    }
+]}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+                            <category>
+                                <pattern>I WOULD LIKE MILK</pattern>
+                                <template>Ok. <think><set name=”topic”>beverages milk</set></think></template>
+                            </category>
+
+                            <topic name=”beverages *”>
+                                <category>
+                                    <pattern>WHAT DO I WANT</pattern>
+                                    <template><topicstar/></template>
+                                </category>
+                            </topic>
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- UPPERCASE TAG ------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="uppercase" class="doc-section">
+                                <h2 class="section-title">&lt;uppercase></h2>
+                                <div class="section-block">
+                                    <p>The uppercase tag is used to convert the output to uppercase.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">&lt;uppercase>this will be uppercase&lt;/uppercase>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>UPPERCASE *&lt;/pattern>
+        &lt;template>&lt;uppercase>&lt;star/>&lt;/uppercase>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"uppercase this input",
+        "bot":"THIS INPUT"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- VALUE TAG -------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="value" class="doc-section">
+                                <h2 class="section-title">&lt;value></h2>
+                                <div class="section-block">
+                                    <p>Maintained for backward compatibility - Do use this format if you can avoid it.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>Expanded format</p>
+                                        <pre><code class="language-markup">&lt;li>&lt;value>noodles&lt;/value>yum yum&lt;/li>
+</code></pre>
+                                    </div>
+                                    <div class="code-block">
+                                        <p>Equivalent preferred format</p>
+                                        <pre><code class="language-markup">&lt;li value="noodles">yum yum&lt;/li>
+</code></pre>
+                                    </div>
+
+                                </div>
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------------>
+                            <!-------------------------------- VAR TAG -------------------------------->
+                            <!------------------------------------------------------------------------------>
+
+                            <section id="var" class="doc-section">
+                                <h2 class="section-title">&lt;var></h2>
+                                <div class="section-block">
+                                    <p>Maintained for backward compatibility - Do use this format if you can avoid it.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>Expanded format</p>
+                                        <pre><code class="language-markup">&lt;set>&lt;var>dinner&lt;/var>noodles&lt;/set>
+</code></pre>
+                                    </div>
+                                    <div class="code-block">
+                                        <p>Equivalent preferred format</p>
+                                        <pre><code class="language-markup">&lt;set var="dinner">noodles&lt;/set>
+</code></pre>
+                                    </div>
+
+                                </div>
+                            </section><!--//section-->
+
+
+
+
+
+
+                             <!------------------------------------------------------------------------->
+                            <!-------------------------------- VERSION TAG ------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="version" class="doc-section">
+                                <h2 class="section-title">&lt;version /></h2>
+                                <div class="section-block">
+                                    <p>The version tag returns the current app version.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <pre><code class="language-markup">The app version is &lt;version/>
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category>
+        &lt;pattern>WHAT IS THE VERSION OF THIS APP&lt;/pattern>
+        &lt;template>The version is &lt;version/>&lt;/template&gt;
+    &lt;/category>
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Conversation</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+"conversation":
+    {
+        "user":"What is the version of this app?",
+        "bot":"The version is v1.2.0"
+    }
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
+                            <!-------------------------------- HTML TAGS ------------------------------>
+                            <!------------------------------------------------------------------------->
+                            <section id="html-tags" class="doc-section">
+                                <h2 class="section-title">HTML Tags</h2>
+                                <br/>
+                                <p>If the has_html tag is set to true in the request you can access a number of HTML tags in the response.
+                                    If the has_html is set to false then a plain text version of the tag is sent back with no automatic html formatting.</p>
+
+
+
+                                <!------------------------------------------------------------------------->
+                                <!-------------------------------- A TAG -------------------------------->
+                                <!------------------------------------------------------------------------->
+
+                                <section id="a" class="doc-section">
+                                    <h2 class="section-title">&lt;a></h2>
+                                    <div class="section-block">
+                                        <p>This tag allows you to return a hyperlink (if is_html = true).</p>
+                                        <div class="code-block">
+                                            <h6>Tag Example</h6>
+                                            <pre><code class="language-markup">&lt;a href='https://www.google.com'>I am a link to google&lt;/a>
+</code></pre>
+                                        </div>
+                                    </div>
+                                    <div class="section-block">
+                                        <h6>Tag Attributes</h6>
+                                        <p>If any of the attributes below are missing the tag might not behave as expected.</p>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Type</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>href</td>
+                                                    <td>string</td>
+                                                    <td>the address of the link</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div><!--//table-responsive-->
+                                    </div>
+                                    <div class="section-block">
+                                        <h6>Example Category</h6>
+                                        <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern&gt;OPEN GOOGLE&lt;/pattern&gt;
+        &lt;template
+            Click here: &lt;a href='https://www.google.com'>Google&lt;/a>
+        &lt;/template&gt;
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                        </div><!--//code-block-->
+                                    </div><!--//section-block-->
+                                    <div class="section-block">
+                                        <h6>Example Conversation</h6>
+                                        <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"Open google",
+    "bot":"Click here: &lt;a href='https://www.google.com'>Google&lt;/a>"
+    }
+}
+</code></pre>
+                                        </div><!--//code-block-->
+                                    </div><!--//section-block-->
+                                </section><!--//section-->
+
+
+
+                                <!------------------------------------------------------------------------->
+                                <!-------------------------------- B TAG ---------------------------------->
+                                <!------------------------------------------------------------------------->
+                                <section id="b" class="doc-section">
+                                    <h2 class="section-title">&lt;b></h2>
+                                    <div class="section-block">
+                                        <p>This tag allows you to mark up your response using the html &lt;b&gt; tags.</p>
+                                        <div class="code-block">
+                                            <h6>Tag Example</h6>
+                                            <p>The following examples will return the word 'bold' formatted in bold.</p>
+                                            <pre><code class="language-markup">This is &lt;b&gt;bold&lt;/b&gt;.
+</code></pre>
+                                        </div>
+                                    </div>
+                                    <div class="section-block">
+                                        <h6>Example Category</h6>
+                                        <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern&gt;WHAT IS BOLD&lt;/pattern&gt;
+        &lt;template&gt;This is &lt;b&gt;BOLD&lt;/b&gt;/template&gt;
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                        </div><!--//code-block-->
+                                    </div><!--//section-block-->
+                                    <div class="section-block">
+                                        <h6>Example Conversation</h6>
+                                        <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"What is bold?",
+    "bot":"This is &lt;b&gt;BOLD&lt;/b&gt;"
+    }
+}
+</code></pre>
+                                        </div><!--//code-block-->
+                                    </div><!--//section-block-->
+                                </section><!--//section-->
+
+                                <!------------------------------------------------------------------------->
+                                <!-------------------------------- BR TAG -------------------------------->
+                                <!------------------------------------------------------------------------->
+                                <section id="br" class="doc-section">
+                                    <h2 class="section-title">&lt;br /></h2>
+                                    <div class="section-block">
+                                        <p>This tag allows you to mark up your response using the html &lt;br /&gt; tags.</p>
+                                        <div class="code-block">
+                                            <h6>Tag Example</h6>
+                                            <p>The following examples will return a line break between line1 and line2.</p>
+                                            <pre><code class="language-markup">line1&lt;br/&gt;line2.
+</code></pre>
+                                        </div>
+                                    </div>
+                                    <div class="section-block">
+                                        <h6>Example Category</h6>
+                                        <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern&gt;WHAT IS A NEW LINE&lt;/pattern&gt;
+        &lt;template&gt;This is on&lt;br/&gt;a new line&lt;/template&gt;
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                        </div><!--//code-block-->
+                                    </div><!--//section-block-->
+                                    <div class="section-block">
+                                        <h6>Example Conversation</h6>
+                                        <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"What is a new line?",
+    "bot":"This is on&lt;br/&gt;a new line"
+    }
+}
+</code></pre>
+                                        </div><!--//code-block-->
+                                    </div><!--//section-block-->
+                                </section><!--//section-->
+
+
+                                <!------------------------------------------------------------------------->
+                                <!-------------------------------- IMG TAG -------------------------------->
+                                <!------------------------------------------------------------------------->
+
+                                <section id="img" class="doc-section">
+                                    <h2 class="section-title">&lt;img /></h2>
+                                    <div class="section-block">
+                                        <p>This tag allows you to return a html img tag (if is_html = true).</p>
+                                        <div class="code-block">
+                                            <h6>Tag Example</h6>
+                                            <pre><code class="language-markup">Here is your pic: &lt;img src='https://via.placeholder.com/150' />
+</code></pre>
+                                        </div>
+                                    </div>
+                                    <div class="section-block">
+                                        <h6>Tag Attributes</h6>
+                                        <p>If any of the attributes below are missing the tag might not behave as expected.</p>
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Name</th>
+                                                    <th>Type</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>src</td>
+                                                    <td>string</td>
+                                                    <td>the web address of the image</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div><!--//table-responsive-->
+                                    </div>
+                                    <div class="section-block">
+                                        <h6>Example Category</h6>
+                                        <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern&gt;SHOW ME A PICTURE&lt;/pattern&gt;
+        &lt;template
+            Here is your pic: &lt;img src='https://via.placeholder.com/150' />
+        &lt;/template&gt;
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                        </div><!--//code-block-->
+                                    </div><!--//section-block-->
+                                    <div class="section-block">
+                                        <h6>Example Conversation</h6>
+                                        <div class="code-block"><pre><code class="language-javascript">{
+"conversation":{
+    "user":"Show me a picture",
+    "bot":"Here is your pic: &lt;img src='https://via.placeholder.com/150' />"
+    }
+}
+</code></pre>
+                                        </div><!--//code-block-->
+                                    </div><!--//section-block-->
+                                </section><!--//section-->
+
+
+                            </section><!--//doc-section-->
+
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                        <div id="doc-nav" class="doc-nav">
+                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+                                <a class="nav-tag-link scrollto" href="#bot">&lt;bot/></a>
+                                <a class="nav-tag-link scrollto" href="#condition">&lt;condition></a>
+                                <a class="nav-tag-link scrollto" href="#date">&lt;date /></a>
+                                <a class="nav-tag-link scrollto" href="#denormalize">&lt;denormalize></a>
+                                <a class="nav-tag-link scrollto" href="#eval">&lt;eval></a>
+                                <a class="nav-tag-link scrollto" href="#evaluate">&lt;evaluate></a>
+                                <a class="nav-tag-link scrollto" href="#explode">&lt;explode></a>
+                                <a class="nav-tag-link scrollto" href="#feature">&lt;feature></a>
+                                <a class="nav-tag-link scrollto" href="#first">&lt;first></a>
+                                <a class="nav-tag-link scrollto" href="#formal">&lt;formal></a>
+                                <a class="nav-tag-link scrollto" href="#gender">&lt;gender></a>
+                                <a class="nav-tag-link scrollto" href="#get">&lt;get /></a>
+                                <a class="nav-tag-link scrollto" href="#gossip">&lt;gossip></a>
+                                <a class="nav-tag-link scrollto" href="#id">&lt;id /></a>
+                                <a class="nav-tag-link scrollto" href="#input">&lt;input /></a>
+                                <a class="nav-tag-link scrollto" href="#javascript">&lt;javascript></a>
+                                <a class="nav-tag-link scrollto" href="#learn">&lt;learn></a>
+                                <a class="nav-tag-link scrollto" href="#li">&lt;li></a>
+                                <a class="nav-tag-link scrollto" href="#loop">&lt;loop /></a>
+                                <a class="nav-tag-link scrollto" href="#lowercase">&lt;lowercase></a>
+                                <a class="nav-tag-link scrollto" href="#map">&lt;map></a>
+                                <a class="nav-tag-link scrollto" href="#name">&lt;name></a>
+                                <a class="nav-tag-link scrollto" href="#normalize">&lt;normalize></a>
+                                <a class="nav-tag-link scrollto" href="#person">&lt;person></a>
+                                <a class="nav-tag-link scrollto" href="#person2">&lt;person2></a>
+                                <a class="nav-tag-link scrollto" href="#program">&lt;program /></a>
+                                <a class="nav-tag-link scrollto" href="#random">&lt;random></a>
+                                <a class="nav-tag-link scrollto" href="#rate">&lt;rate></a>
+                                <a class="nav-tag-link scrollto" href="#request">&lt;request /></a>
+                                <a class="nav-tag-link scrollto" href="#response">&lt;response /></a>
+                                <a class="nav-tag-link scrollto" href="#rest">&lt;rest></a>
+                                <a class="nav-tag-link scrollto" href="#sentence">&lt;sentence></a>
+                                <a class="nav-tag-link scrollto" href="#set">&lt;set></a>
+                                <a class="nav-tag-link scrollto" href="#size">&lt;size /></a>
+                                <a class="nav-tag-link scrollto" href="#sr">&lt;sr /></a>
+                                <a class="nav-tag-link scrollto" href="#srai">&lt;srai></a>
+                                <a class="nav-tag-link scrollto" href="#sraix">&lt;sraix></a>
+                                <a class="nav-tag-link scrollto" href="#star">&lt;star /></a>
+                                <a class="nav-tag-link scrollto" href="#that">&lt;that></a>
+                                <a class="nav-tag-link scrollto" href="#thatstar">&lt;thatstar /></a>
+                                <a class="nav-tag-link scrollto" href="#think">&lt;think></a>
+                                <a class="nav-tag-link scrollto" href="#topic">&lt;topic></a>
+                                <a class="nav-tag-link scrollto" href="#topicstar">&lt;topicstar /></a>
+                                <a class="nav-tag-link scrollto" href="#uppercase">&lt;uppercase></a>
+                                <a class="nav-tag-link scrollto" href="#value">&lt;value></a>
+                                <a class="nav-tag-link scrollto" href="#var">&lt;var /></a>
+                                <a class="nav-tag-link scrollto" href="#version">&lt;version /></a>
+                                <a class="nav-tag-link scrollto" href="#html-tags"><b>HTML Tags</b></a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-tag-link scrollto" href="#a">&lt;a></a>
+                                        <a class="nav-tag-link scrollto" href="#b">&lt;b /></a>
+                                        <a class="nav-tag-link scrollto" href="#br">&lt;br /></a>
+                                        <a class="nav-tag-link scrollto" href="#img">&lt;img /></a>
+                                    </nav><!--//nav-->
+                            </nav><!--//doc-menu-->
+                        </div><!--//doc-nav-->
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+
+        <div id="promo-block" class="promo-block">
+            <div class="container">
+                <div class="promo-block-inner">
+                    <h3 class="promo-title text-center"><i class="fa fa-heart"></i> <a href="https://lemursite.com/hosted" target="_blank">Want a Chatbot in the simplest fasts way possible?</a></h3>
+                    <div class="row">
+                        <div class="figure-holder col-lg-5 col-md-6 col-12">
+                            <div class="figure-holder-inner">
+                                <a href="https://lemursite.com/hosted" target="_blank"><img class="img-fluid" src="assets/images/help.jpg" alt="Host Bots" /></a>
+                                <a class="mask" href="https://lemursite.com/hosted"><i class="icon fa fa-heart pink"></i></a>
+
+                            </div>
+                        </div><!--//figure-holder-->
+                        <div class="content-holder col-lg-7 col-md-6 col-12">
+                            <div class="content-holder-inner">
+                                <div class="desc">
+                                    <h4 class="content-title"><strong> Hosted Solution</strong></h4>
+                                    <p>Check out our <a href="https://lemursite.com/hosted" target="_blank">Hosted Solutions</a> - We have a number of subscription plans available so you can get going in no time - <strong class="highlight">with no coding experience</strong>. It's the simplest of way to get going quickly. </p>
+
+                                    <h4 class="content-title"><strong> Chatbot Consultants</strong></h4>
+                                    <p>If you need help with <strong class="highlight">customisation</strong> or a <strong class="highlight">bespoke feature</strong> - then get in touch with us over that theramenrobotdiscocode.com and let's see how we can help.</p>
+                                    <a class="btn btn-cta" href="https://theramenrobotdiscocode.com/p/quote/" target="_blank"><i class="fas fa-external-link-alt"></i> Get In Touch</a>
+
+                                </div><!--//desc-->
+                            </div><!--//content-holder-inner-->
+                        </div><!--//content-holder-->
+                    </div><!--//row-->
+                </div><!--//promo-block-inner-->
+            </div><!--//container-->
+        </div><!--//promo-block-->
+        
+    </div><!--//page-wrapper-->
+
+    <!-- bot chat window -->
+    <div id="chat-popup" data-botid="doc-bot" data-clientid="" data-host="https://portal.lemurengine.com"></div>
+    <!--/bot chat window -->
+    
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+
+           <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="https://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for <a href="https://lemurengine.com/" target="_blank">Lemur Engine</a> || Need help? <a href="docbot.html" target="_blank">Ask Doc Bot</a> </small>
+
+        </div><!--//container-->
+    </footer><!--//footer-->
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="https://portal.lemurengine.com/widgets/popup/chat.js"></script>
+    
+</body>
+</html> 
+
