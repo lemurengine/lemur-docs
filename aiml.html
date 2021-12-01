@@ -63,6 +63,96 @@
                         <div class="content-inner">
 
                             <!------------------------------------------------------------------------->
+                            <!-------------------------------- AVATAR TAG -------------------------------->
+                            <!------------------------------------------------------------------------->
+
+                            <section id="avatar" class="doc-section">
+                                <h2 class="section-title">&lt;avatar /></h2>
+                                <div class="section-block">
+                                    <p>This is a proprietary tag that allows you to define expressions for your bot that will be triggered if you use a Lemurtar avatar.</p>
+                                    <div class="code-block">
+                                        <h6>Tag Example</h6>
+                                        <p>The following examples will add a 'smile' to your lemurtar</p>
+                                        <pre><code class="language-markup">&lt;avatar action="smile" /&gt;
+</code></pre>
+                                    </div>
+                                </div>
+                                <div class="section-block">
+                                    <h6>Tag Attributes</h6>
+                                    <p>If any of the attributes below are missing the tag might not behave as expected.</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Description</th>
+                                                <th>Options</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>action</td>
+                                                <td>string</td>
+                                                <td>the action you wish your avatar to perform</td>
+                                                <td>sad, happy, angry, scared, love</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!--//table-responsive-->
+                                </div>
+                                <div class="section-block">
+                                    <h6>Example Category</h6>
+                                    <div class="code-block">
+<pre><code class="language-markup">&lt;aiml version="2.0"&gt;
+    &lt;category&gt;
+        &lt;pattern&gt;TEST HAPPY&lt;/pattern&gt;
+        &lt;template&gt;I am happy&lt;avatar action="happy" /&gt;&lt;/template&gt;
+    &lt;/category&gt;
+&lt;/aiml&gt;
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div class="section-block">
+                                    <h6>Example Response</h6>
+                                    <div class="code-block"><pre><code class="language-javascript">{
+    "success": true,
+    "data": {
+        "conversation": {
+            "input": "test happy",
+            "output": "I am happy",
+            "id": "08b53284-355f-4d89-9f8b-38878eddfc8d",
+            "topic": ""
+        },
+        "bot": {
+            "id": "dilly",
+            "name": "Dilly",
+            "image": "https://demo.lemurengine.com/widgets/dilly.png"
+        },
+        "client": {
+            "id": "8db4c2d7-c96d-43c1-bef7-0b30e8e86e96",
+            "image": "https://demo.lemurengine.com/images/default/blank.png",
+            "name": ""
+        },
+        "features": {
+            "action": "happy"
+        },
+        "metadata": {
+            "version": "1.5.0",
+            "date": "2021-12-01T07:55:10.606212Z",
+            "duration": "337ms"
+        }
+    },
+    "message": "Conversation turn successful"
+}
+</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//section-->
+
+                            <!------------------------------------------------------------------------->
                             <!-------------------------------- BOT TAG -------------------------------->
                             <!------------------------------------------------------------------------->
 
@@ -2441,6 +2531,7 @@ which is equivalent to: &lt;response index="1"/>
                     <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
                         <div id="doc-nav" class="doc-nav">
                             <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+                                <a class="nav-tag-link scrollto" href="#avatar">&lt;avatar/></a>
                                 <a class="nav-tag-link scrollto" href="#bot">&lt;bot/></a>
                                 <a class="nav-tag-link scrollto" href="#condition">&lt;condition></a>
                                 <a class="nav-tag-link scrollto" href="#date">&lt;date /></a>
