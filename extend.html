@@ -67,10 +67,10 @@
                                 <div class="section-block">
                                     <p>You can extend the capabilities of your bot using tags created by other people.</p>
                                     <p>Or you can create new tags yourself and even offer them for other people to use.</p>
-                                    <p>Custom tag classes live in the <b>App\Tags\Custom</b> directory. You can have a look and see an example for the both types of tags;
+                                    <p>Custom tag classes live in the <b>App\LemurTag</b> directory. You can have a look and see an example for the both types of tags;
                                     <ol>
                                         <li>Self Closing Tags e.g. &lt;helloworld/></li>
-                                        <li>Paired Tags e.g. &lt;googlesearch>&lt;/googlesearch></li>
+                                        <li>Paired Tags e.g. &lt;echo>&lt;/echo></li>
                                     </ol>
                                     </p>
                                     <p>In 99% of cases copying one of those files and adding your functionality to the closeTag() method will suit your needs.</p>
@@ -80,75 +80,77 @@
                             <section id="example-self-closing-section" class="doc-section">
                                 <h2 class="section-title">Example Custom Self Closing Tags</h2>
                                 <div class="section-block">
-                                    <p>Below is the custom helloworld tag.</p>
-                                    <p>You can find a copy of this in the app/Tags/Custom directory.</p>
+                                    <p>Below is the custom HelloWorldTag.</p>
+                                    <p>You can find a copy of this in the app/LemurTag directory.</p>
 
 
 <pre class=" language-php">
     <code class=" language-php">
 &lt;?php
-namespace App\Tags\Custom;
+namespace App\LemurTag;
 
-use App\Classes\LemurLog;
-use App\Tags\AimlTag;
-use App\Models\Conversation;
+use LemurEngine\LemurBot\Classes\LemurLog;
+use LemurEngine\LemurBot\LemurTag\AimlTag;
+use LemurEngine\LemurBot\Models\Conversation;
 
 /**
- * Class HelloworldTag
- * @package App\Tags\Custom
+ * Class HelloWorldTag
+ * @package App\LemurTag
  *
- * Usage: &lt;helloworld />
+ * Usage: <helloworld />
  *
  * Example AIML:
- * &lt;category>
- *  &lt;pattern>TEST&lt;/pattern>
- *  &lt;template>&lt;helloworld />&lt;/template>
- * &lt;/category>
+ * <category>
+ *  <pattern>TEST HELLO WORLD</pattern>
+ *  <template><helloworld /></template>
+ * </category>
  *
  * Expected Conversation:
- * Input: Test
+ * Input: Test Hello World
  * Output: Hello World!
  *
  * Documentation:
- * https://docs.lemurengine.com/extend.html
+ * https://docs.lemurbot.com/extend.html
  */
- class HelloworldTag extends AimlTag
- {
-    protected $tagName = "Helloworld";
+class HelloWorldTag extends AimlTag
+{
+    protected string $tagName = "HelloWorld";
+    //this is a standard tag
+    static $aimlTagType = self::TAG_STANDARD;
 
 
-     /**
+    /**
      * HelloWorldTag Constructor.
      * @param Conversation $conversation
-     * @param $attributes
+     * @param array $attributes
      */
-     public function __construct(Conversation $conversation, $attributes = [])
-     {
+    public function __construct(Conversation $conversation, array $attributes = [])
+    {
         parent::__construct($conversation, $attributes);
-     }
+    }
 
 
-     /**
-     * This method is called when the closing tag is encountered e.g. &lt;helloworld/>
+    /**
+     * This method is called when the closing tag is encountered e.g. <helloworld/>
      * @return string|void
      */
-     public function closeTag()
-     {
-         //some debugging
-         LemurLog::debug(
-             __FUNCTION__, [
-             'conversation_id'=>$this->conversation->id,
-             'turn_id'=>$this->conversation->currentTurnId(),
-             'tag_id'=>$this->getTagId(),
-             'attributes'=>$this->getAttributes()
-         ]
+    public function closeTag()
+    {
+        //some debugging
+        LemurLog::debug(
+            __FUNCTION__, [
+                'conversation_id'=>$this->conversation->id,
+                'turn_id'=>$this->conversation->currentTurnId(),
+                'tag_id'=>$this->getTagId(),
+                'attributes'=>$this->getAttributes()
+            ]
         );
 
-     //build response in the stack
-     $this->buildResponse('Hello World!');
+        //build response in the stack
+        $this->buildResponse("Hello World!");
+    }
+}
 
-     }
- }
             </code>
         </pre>
     </div>
@@ -158,82 +160,77 @@ use App\Models\Conversation;
                             <section id="example-paired-section" class="doc-section">
                                 <h2 class="section-title">Example Custom Paired Tags</h2>
                                 <div class="section-block">
-                                    <p>Below is the custom googlesearch tag.</p>
-                                    <p>You can find a copy of this in the app/Tags/Custom directory.</p>
+                                    <p>Below is the custom EchoTag.</p>
+                                    <p>You can find a copy of this in the app/LemurTag directory.</p>
 
 
                                     <pre class=" language-php">
     <code class=" language-php">
 &lt;?php
+namespace LemurEngine\LemurBot\LemurTag;
 
-namespace App\Tags\Custom;
-
-use App\Classes\LemurLog;
-use App\Tags\AimlTag;
-use App\Models\Conversation;
+use LemurEngine\LemurBot\Classes\LemurLog;
+use LemurEngine\LemurBot\Models\Conversation;
 
 /**
- * Class Googlesearch
- * @package App\Tags\Custom
+ * Class EchoTag
+ * @package App\LemurTag
  *
- * Usage: &lt;googlesearch>Cake Recipe&lt;/googlesearch
+ * Usage: <echo><star /></echo>
  *
  * Example AIML:
- * &lt;category>
- *  &lt;pattern>SEARCH GOOGLE FOR A *&lt;/pattern>
- *  &lt;template>&lt;googlesearch>&lt;star />&lt;/googlesearch&lt;/template>
- * &lt;/category>
+ * <category>
+ *  <pattern>ECHO *</pattern>
+ *  <template><echo><star /></echo></template>
+ * </category>
  *
  * Expected Conversation:
- * Input: Search google for a cake recipe
- * Output: Check these search results: &lt;a href="https://www.google.com/search?q=cake+recipe" target="_new">cake recipe&lt;/a>
+ * Input: Echo Yikes
+ * Output: Yikes
  *
  * Documentation:
- * https://docs.lemurengine.com/extend.html
- *
+ * https://docs.lemurbot.com/extend.html
  */
- class GooglesearchTag extends AimlTag
- {
-    protected $tagName = "Googlesearch";
+class EchoTag extends AimlTag
+{
+    protected string $tagName = "Echo";
+    //this is a standard tag
+    static $aimlTagType = self::TAG_STANDARD;
 
 
-     /**
-     * GooglesearchTag Constructor.
+    /**
+     * FormalTag Constructor.
      * @param Conversation $conversation
-     * @param $attributes
+     * @param array $attributes
      */
-     public function __construct(Conversation $conversation, $attributes = [])
-     {
+    public function __construct(Conversation $conversation, array $attributes = [])
+    {
         parent::__construct($conversation, $attributes);
-     }
+    }
 
 
-     /**
-     * This method is called when the closing tag is encountered e.g. &lt;/googlesearch>
-     * @return string|void
+    /**
+     * when we close the <set> tag we need to decide if we want
      */
-     public function closeTag()
-     {
-         LemurLog::debug(
-             __FUNCTION__, [
-             'conversation_id'=>$this->conversation->id,
-             'turn_id'=>$this->conversation->currentTurnId(),
-             'tag_id'=>$this->getTagId(),
-             'attributes'=>$this->getAttributes()
-             ]
-         );
+    public function closeTag()
+    {
 
-         //gets the current content of the tag e.g. what currently exists in &lt;googlesearch>something&lt;/googlesearch> (something)
-         $tagContents = $this->getCurrentTagContents(true);
+        LemurLog::debug(
+            __FUNCTION__,
+            [
+                'conversation_id'=>$this->conversation->id,
+                'turn_id'=>$this->conversation->currentTurnId(),
+                'tag_id'=>$this->getTagId(),
+                'attributes'=>$this->getAttributes()
+            ]
+        );
 
-         //build the string for the response..
-         $urlEncodedTagContents = urlencode($tagContents);
-         $responseStr = "Check these search results: &lt;a href=\"https://www.google.com/search?q=".$urlEncodedTagContents."\" target=\"_new\">".$tagContents."&lt;/a>";
+        //this will return the value of <star />
+        $contents = $this->getCurrentTagContents(true);
+        $this->buildResponse($contents);
+    }
+}
 
-         //build response in the stack
-         $this->buildResponse($responseStr);
-     }
- }
             </code>
         </pre>
                                 </div>
@@ -246,24 +243,16 @@ use App\Models\Conversation;
                                 <div class="section-block">
                                     <p>Follow the guidelines below when making your custom tag;</p>
                                     <ol>
+                                        <li>It is critical that your class has the app/LemurTag namespace</li>
                                         <li>Extend the class AimlTag()</li>
-                                        <li>Override the closeTag() in the first instances</li>
-                                        <li>You can also override the startTag(), ProcessContents() but in 99% of cases that isn't necessary</li>
+                                        <li>Add your tag logic to the closeTag() method</li>
+                                        <li>You can also update the startTag(), ProcessContents() but in 99% of cases that isn't necessary</li>
                                         <li>If you need config for your tag create a config file in the config directory</li>
                                     </ol>
                                     </p>
-                                    <p>If you would like to share your custom tag with others, in addition to the above you should;</p>
-                                        <ol>
-                                            <li>Document an example category and expect conversation in the comments</li>
-                                            <li>Make your code as easy to read as possible</li>
-                                        </ol>
-                                    </p>
-                                    <p>If you would submit your custom tag to the main project, in addition to the above you should;</p>
-                                    <ol>
-                                        <li>Write a test category in the <b>database/seeds/UnitTestCategoriesTableSeeder.php</b> file</li>
-                                        <li>Write a test in the <b>tests/AIML/AIMLConversationTest.php</b> file</li>
-                                        <li>Submit a pull request into the develop branch with your tag</li>
-                                    </ol>
+                                    <p>You can create custom tag packages to allow others to pull in your custom tags or just to better organise your own tags;
+                                    <br>Checkout the custom GoogleSearchTag on Packagist for an example on how to do this:
+                                        <a href="https://packagist.org/packages/lemurengine/lemurtag-googlesearch">lemurtag-googlesearch</a>
                                     </p>
                                 </div><!--//section-block-->
                             </section><!--//doc-section-->
