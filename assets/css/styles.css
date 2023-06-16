@@ -1463,3 +1463,9 @@ select {
     width: 560px;
   }
 }
+
+pre code {
+  font-size: inherit;
+  color: white !important;
+  word-break: normal;
+}

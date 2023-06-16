@@ -65,78 +65,284 @@
                 <div class="doc-body row">
                     <div class="doc-content col-md-9 col-12 order-1">
                         <div class="content-inner">
-                            <section id="laravel" class="doc-section">
+
+                            <section id="Laravel" class="doc-section">
                                 <h2 class="section-title">Laravel</h2>
-                                <div id="laravel-div"  class="section-block">
-                                    <p>The Lemur Engine is written in Laravel and can be developed and deployed like any Laravel application.</p>
-                                    <p>For more information visit: <a href="https://laravel.com/docs/9.x">https://laravel.com/docs/9.x</a> </p>
-                                </div>
-                            </section><!--//doc-section-->
-                            <section id="install" class="doc-section">
-                                <h3 class="section-title">Install</h3>
-                                <div id="install-div"  class="section-block">
-                                    <h3 class="block-title">Install Using composer</h3>
-                                    <p>Once you have installed Laravel from inside your root run</p>
-                                    <p><code>
-                                        composer require lemurengine/lemurbot
-                                    </code></p>
-                                </div>
-                            </section><!--//doc-section-->
-                            <section id="build" class="doc-section">
-                                <h3 class="section-title">Building Commands</h3>
-                                <div id="build-div"  class="section-block">
-                                    <h3 class="block-title">Run the following commands to build the assets and install the app</h3>
-                                    <p>(These instructions assume a fresh install - if upgrading then please check packagist for more indepth instructions)</p>
-                                    <p><code>php artisan vendor:publish --tag=lemurbot-template --force</code></p>
-                                    <p><code>php artisan vendor:publish --tag=lemurbot-auth --force</code></p>
-                                    <p><code>php artisan vendor:publish --tag=lemurbot-assets</code></p>
-                                    <p><code>php artisan vendor:publish --tag=lemurbot-widgets</code></p>
-                                    <p><code>php artisan vendor:publish --tag=lemurbot-config</code></p>
-                                    <p><code>php artisan vendor:publish --tag=datatables</code></p>
-                                    <p><code>php artisan vendor:publish --tag=datatables-buttons</code></p>
-                                    <p><code>php artisan vendor:publish --tag=datatables-html</code></p>
-                                    <p><code>php artisan vendor:publish --tag=datatables-fractal</code></p>
-                                    <p><code>php artisan vendor:publish --tag=lemurbot-examples</code></p>
-                                    <p><code>php artisan vendor:publish --tag=lemurbot-migrations</code></p>
-                                    <p><code>php artisan lemur:upgrade 9.0.0</code></p>
-                                    <p><code>php artisan migrate</code></p>
-                                    <p><code>php artisan storage:link</code></p>
-                                    </p>
-                                </div>
-                            </section><!--//doc-section-->
-                            <section id="run" class="doc-section">
-                                <h3 class="section-title">Run Locally</h3>
-                                <div id="run-div"  class="section-block">
-                                    <h3 class="block-title">Run the following commands to buid locally</h3>
-                                    <p><code>
-                                        php artisan serve
-                                    </code></p>
-                                </div>
-                            </section><!--//doc-section-->
-                            <section id="version" class="doc-section">
-                                <h3 class="section-title">Versioning</h3>
-                                <div id="version-div"  class="section-block">
-                                    <h3 class="block-title">Laravel Versions</h3>
-                                    <p>This package is built for Laravel 9.x
-                                        Compatible Laravel versions are reflected in the LemurBot versions.
-                                        LemurBot 9.x versions are compatible with Laravel 9.x versions
-                                    </p>
+                                <div id="laravel-div" class="section-block">
+                                    <p>LemurEngine LemurBots is written for the Laravel framework.</p>
+                                    <p>The first step is to install and set up your version of Laravel.</p>
+                                    <p>For more information on how to install Laravel, check out: <a href="https://laravel.com/docs/9.x/installation">https://laravel.com/docs/9.x/installation</a></p>
+                                    <p>Use the --with-all-dependencies flag to update any conflicting packages the first time it's run</p>
                                 </div>
                             </section><!--//doc-section-->
 
+                            <section id="Versioning" class="doc-section">
+                                <h2 class="section-title">Versioning</h2>
+                                <div id="versioning-div" class="section-block">
+                                    <p>This package is built for Laravel 9.x</p>
+                                    <p>Compatible Laravel versions are reflected in the LemurBot versions.</p>
+                                    <p>LemurBot 9.x versions are compatible with Laravel 9.x versions</p>
+                                </div>
+                            </section><!--//doc-section-->
+
+                            <section id="Prerequisites" class="doc-section">
+                                <h2 class="section-title">Prerequisites</h2>
+                                <div id="prerequisites-div" class="section-block">
+                                    <p>This has been developed for PHP 8.0</p>
+                                </div>
+                            </section><!--//doc-section-->
+
+                            <section id="Install-with-Lemur-Engine-with-composer" class="doc-section">
+                                <h2 class="section-title">Install With Composer</h2>
+                                <div id="install-with-lemur-engine-with-composer-div" class="section-block">
+                                    <p>Use the <b>--with-all-dependencies</b> flag to update any conflicting packages the first time its run</p>
+                                    <pre><code>composer require lemurengine/lemurbot dev-develop --with-all-dependencies</code></pre>
+                                </div>
+                            </section><!--//doc-section-->
+
+                            <section id="TLDR-Setup-Application-Steps" class="doc-section">
+                                <h2 class="section-title">TL/DR Setup Application Steps</h2>
+                                <div id="tldr-fresh-installation-steps-div" class="section-block">
+                                    <p>If you do not want to read what the commands actually do and you just want run them then here they are.<br/>
+                                        Only use these command on a FRESH installation of laravel.</p>
+        <pre><code>php artisan vendor:publish --tag=lemurbot-template --force
+php artisan vendor:publish --tag=lemurbot-auth --force
+php artisan vendor:publish --tag=lemurbot-assets
+php artisan vendor:publish --tag=lemurbot-widgets
+php artisan vendor:publish --tag=lemurbot-config
+php artisan vendor:publish --tag=datatables
+php artisan vendor:publish --tag=datatables-buttons
+php artisan vendor:publish --tag=datatables-html
+php artisan vendor:publish --tag=datatables-fractal
+php artisan vendor:publish --tag=lemurbot-examples
+php artisan vendor:publish --tag=lemurbot-migrations
+php artisan migrate
+php artisan storage:link
+php artisan lemur:install-all --admin=admin@lemurengine.local --bot=mybot --data=max</code></pre>
+                                </div>
+                            </section><!--//doc-section-->
+
+
+                            <section id="Full-Setup-Application-Steps" class="doc-section">
+                                <h2 class="section-title">Full Setup Application Steps</h2>
+                                <div id="full-fresh-installation-steps-div" class="section-block">
+                                    <p>LemurEngine LemurBots is written for the Laravel framework.<br/>
+                                        The first step is to install and setup your version of Laravel.<br/>
+                                        For more information on how to install Laravel check out: <a href="https://laravel.com/docs/9.x/installation">https://laravel.com/docs/9.x/installation</a>.</p>
+                            
+                                <section id="Publish-Template-recommended" class="doc-section">
+                                    <h3 class="section-title">Publish Template (recommended)</h3>
+                                    <div id="publish-template-recommended-div" class="section-block">
+                                        <p>This will create the default layout for the portal.</p>
+                                        <p>If you are installing the Lemur Engine into a fresh application, then run this command.</p>
+                                        <p>If you already have a layout, then you might want to skip this step as it will overwrite your existing layouts/app.blade.php, auth templates, and homepage</p>
+                                        <pre><code>php artisan vendor:publish --tag=lemurbot-template --force</code></pre>
+                                    </div>
+                                </section><!--//doc-section-->
+    
+                                <section id="Publish-Auth" class="doc-section">
+                                    <h3 class="section-title">Publish Auth Templates/Controllers (recommended)</h3>
+                                    <div id="publish-auth-templatescontrollers-recommended-div" class="section-block">
+                                        <p>This will create the customized authentication layout for the portal.</p>
+                                        <p>If you are installing the Lemur Engine into a fresh application, then run this command.</p>
+                                        <p>If you already have created your authentication layouts/controllers, then you might want to skip this step as it will overwrite your existing resources/views/auth and app/Http/Controllers/Auth</p>
+                                        <pre><code>php artisan vendor:publish --tag=lemurbot-auth --force</code></pre>
+                                    </div>
+                                </section><!--//doc-section-->
+    
+                                <section id="Publish-Public-Assets-required" class="doc-section">
+                                    <h3 class="section-title">Publish Public Assets (required)</h3>
+                                    <div id="publish-public-assets-required-div" class="section-block">
+                                        <p>This will copy the required asset files to your public folder.</p>
+                                        <p>This is required to make forms and validation features work correctly</p>
+                                        <pre><code>php artisan vendor:publish --tag=lemurbot-assets</code></pre>
+                                    </div>
+                                </section><!--//doc-section-->
+    
+                                <section id="Publish-Public-Widgets-required" class="doc-section">
+                                    <h3 class="section-title">Publish Public Widgets (required)</h3>
+                                    <div id="publish-public-widgets-required-div" class="section-block">
+                                        <p>This will copy the widgets to the public widgets' folder</p>
+                                        <pre><code>php artisan vendor:publish --tag=lemurbot-widgets</code></pre>
+                                    </div>
+                                </section><!--//doc-section-->
+    
+                                <section id="Publish-Config-required" class="doc-section">
+                                    <h3 class="section-title">Publish Config (required)</h3>
+                                    <div id="publish-config-required-div" class="section-block">
+                                        <p>This will copy the lemur bot config files to config/lemurbot</p>
+                                        <ul>
+                                            <li>config/lemurbot/lemur.php</li>
+                                            <li>config/lemurbot/properties.php</li>
+                                        </ul>
+                                        <pre><code>php artisan vendor:publish --tag=lemurbot-config</code></pre>
+                                    </div>
+                                </section><!--//doc-section-->
+    
+                                <section id="Publish-Datatables-Config-And-Assets-required" class="doc-section">
+                                    <h3 class="section-title">Publish Datatables Config And Assets (required)</h3>
+                                    <div id="publish-datatables-config-and-assets-required-div" class="section-block">
+                                        <p>This application uses the Yajra datatables plugin.</p>
+                                        <p><a href="https://yajrabox.com/docs/laravel-datatables">https://yajrabox.com/docs/laravel-datatables</a></p>
+                                        <p>If you need to publish the config, run the following command</p
+                                        <pre><code>php artisan vendor:publish --tag=datatables
+    php artisan vendor:publish --tag=datatables-buttons
+    php artisan vendor:publish --tag=datatables-html
+    php artisan vendor:publish --tag=datatables-fractal</code></pre>
+                                    </div>
+                                </section><!--//doc-section-->
+    
+                                <section id="Publish-Example-Tags-and-Plugins-optional" class="doc-section">
+                                    <h3 class="section-title">Publish Example Tags and Plugins (optional)</h3>
+                                    <div id="publish-example-tags-and-plugins-optional-div" class="section-block">
+                                        <p>This will copy the example HelloWorldTag and EchoTag to the App\LemurTag folder</p>
+                                        <p>And will copy the example MaintainMode and ShoutBack to the App\LemurPlugin folder</p>
+                                        <pre><code>php artisan vendor:publish --tag=lemurbot-examples</code></pre>
+                                    </div>
+                                </section><!--//doc-section-->
+    
+                                <section id="Publish-Database-Migrations-optional" class="doc-section">
+                                    <h3 class="section-title">Publish Database Migrations (optional)</h3>
+                                    <div id="publish-database-migrations-optional-div" class="section-block">
+                                        <p>This will copy the lemur engine migration files to database/migration/lemurbot</p>
+                                        <p>You don't really need to do this.</p>
+                                        <p>But you can if you want to.</p>
+                                        <pre><code>php artisan vendor:publish --tag=lemurbot-migrations</code></pre>
+                                    </div>
+                                </section><!--//doc-section-->
+    
+                                <section id="Run-the-database-migrations-required" class="doc-section">
+                                    <h3 class="section-title">Run the database migrations (required)</h3>
+                                    <div id="run-the-database-migrations-required-div" class="section-block">
+                                        <p>The following command will create or update your existing database table schema.</p>
+                                        <pre><code>php artisan migrate</code></pre>
+                                    </div>
+                                </section><!--//doc-section-->
+    
+                                <section id="Symlink-public-folders-required" class="doc-section">
+                                    <h3 class="section-title">Symlink public folders (required)</h3>
+                                    <div id="symlink-public-folders-required-div" class="section-block">
+                                        <p>The following command will create or update your existing database table schema.</p>
+                                        <pre><code>php artisan storage:link</code></pre>
+                                    </div>
+                                </section><!--//doc-section-->
+    
+                                <section id="Run-the-command-to-install-a-user-a-bot-and-the-AIML-data" class="doc-section">
+                                    <h3 class="section-title">Run the command to install a user, a bot, and the AIML data</h3>
+                                    <div id="run-the-command-to-install-a-user-a-bot-and-the-aiml-data-div" class="section-block">
+                                        <p>If you are migrating or already have this data, you probably will not need to run this (see the section at the top of the page about migrating)</p>
+                                        <pre><code>php artisan lemur:install-all --admin=[admin_email] --bot=[bot_name] --data=[none|min|max]</code></pre>
+                                        <p>example:</p>
+                                        <pre><code>php artisan lemur:install-all --admin=admin@lemurengine.local --bot=mybot --data=max</code></pre>
+                                        <p>-`admin_email` is the email address you will log in with. Your password will be 'password' which you should
+    
+                                            change</p>
+                                        <p>-`bot_name` is the name you will give your bot</p>
+                                        <p>-`--data=` (none|min|max) determines how much AIML data you want in your bot</p>
+                                    </div>
+                                </section><!--//doc-section-->
+
+                                </div>
+                            </section>
+
+                            <section id="Start-the-Application" class="doc-section">
+                                <h2 class="section-title">Start the Application</h2>
+                                <div id="start-application-div" class="section-block">
+                                    <p>You can start the application now and log in using the username you entered above and the password 'password'.</p>
+                                    <p>Don't forget to change your password.</p>
+                                    <pre><code>php artisan serve</code></pre>
+                                </div>
+                            </section>
+
+                            <section id="Use" class="doc-section">
+                                <h2 class="section-title">Use</h2>
+                                <div id="use-div" class="section-block">
+                                    <p>Talk to your bot here:</p>
+                                    <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>
+                                    <p>Log in to admin your bot here:</p>
+                                    <a href="http://127.0.0.1:8000/login">http://127.0.0.1:8000/login</a>
+                                </div>
+                            </section>
+
+                            <section id="Migrating" class="doc-section">
+                                <h2 class="section-title">Migrating From theramenrobotdiscocode/lemur-engine</h2>
+                                <div id="migrating-div" class="section-block">
+                                    <p>The original version of this library was released as an entire application which included a checked in version of Laravel 7.</p>
+                                    <p>It is easy to migrate your original version of theramenrobotdiscocode/lemur-engine to this version.</p>
+                                    <p>There are NO database schema changes just some minor data changes and file location changes.</p>
+                                    <p>We suggest you install a new fresh copy of Laravel 9 and configure it to connect to your existing database.</p>
+                                    <p>You will need to still follow the fresh installation instructions below.</p>
+                                    <p>And anyway "Additional Upgrade Steps" as well.</p>
+
+
+                                <section id="Additional-Upgrade-Step-Custom-Tag" class="doc-section">
+                                    <h3 class="section-title">Additional Upgrade Step: Custom Tag</h3>
+                                    <div id="custom-tag-div" class="section-block">
+                                        <p>Only do this is you are migrating from the old project.</p>
+                                        <p>Move any custom tags which you have created to a folder called in the main app folder called LemurTag like so:</p>
+                                        <pre><code>app/
+├── LemurTag/
+│   ├── YourTag.php
+│   ├── HelloWorldTag.php
+└── Models/</code></pre>
+                                        <p>You will need to change the namespace of your custom tags to <code>namespace App\LemurTag;</code></p>
+                                        <p>Please look at the HelloWorldTag for an example.</p>
+                                    </div>
+                                </section>
+
+                            <section id="Additional-Upgrade-Step-Run-the-command-to-update-a-few-filenames-in-the-migrations-folder" class="doc-section">
+                                <h3 class="section-title">Additional Upgrade Step: Run the command to update a few filenames in the migrations folder</h3>
+                                <div id="update-filenames-div" class="section-block">
+                                    <p>Only do this is you are migrating from the old project.</p>
+                                    <p>There are 4 filenames in the migration table which need reverting to their original Laravel Migration filenames.</p>
+                                    <p>Run this command to update the 4 filenames in the migrations table before you move onto the next step:</p>
+                                    <pre><code>php artisan lemur:upgrade 9.0.0</code></pre>
+                                </div>
+                            </section>
+
+                            <section id="Additional-Upgrade-Step-Run-the-command-to-update-the-user-to-an-admin-user" class="doc-section">
+                                <h3 class="section-title">Additional Upgrade Step: Run the command to update the user to an admin user</h3>
+                                <div id="update-user-div" class="section-block">
+                                    <p>Only do this is you are migrating from the old project.</p>
+                                    <p>If you have existing data and want to give a user bot_admin privileges you can run this command:</p>
+                                    <pre><code class="code-block">php artisan lemur:install-admin --admin=[admin_email]</code></pre>
+                                </div>
+                            </section>
+                                </div>
+                            </section>
+
                         </div><!--//content-inner-->
+
+
                     </div><!--//doc-content-->
                     <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
                         <div id="doc-nav" class="doc-nav">
 	                        
 	                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
 
-                                    <a class="nav-link scrollto" href="#laravel">Laravel</a>
-                                    <a class="nav-link scrollto" href="#version">Versioning</a>
-	                                <a class="nav-link scrollto" href="#install">Install</a>
-                                    <a class="nav-link scrollto" href="#build">Build</a>
-                                    <a class="nav-link scrollto" href="#run">Run</a>
-
+                                    <a class="nav-link scrollto" href="#Laravel">Laravel</a>
+                                    <a class="nav-link scrollto" href="#Versioning">Versioning</a>
+                                    <a class="nav-link scrollto" href="#Prerequisites">Prerequisites</a>
+                                    <a class="nav-link scrollto" href="#Install-with-Lemur-Engine-with-composer">Composer</a>
+                                    <a class="nav-link scrollto" href="#TLDR-Setup-Application-Steps">TL/DR Setup Steps</a>
+                                    <a class="nav-link scrollto" href="#Full-Setup-Application-Steps">Full Setup Steps</a>
+                                    <a class="nav-link scrollto" href="#Publish-Template-recommended">Publish Template</a>
+                                    <a class="nav-link scrollto" href="#Publish-Auth">Publish Auth</a>
+                                    <a class="nav-link scrollto" href="#Publish-Public-Assets-required">Publish Assets</a>
+                                    <a class="nav-link scrollto" href="#Publish-Public-Widgets-required">Publish Widgets</a>
+                                    <a class="nav-link scrollto" href="#Publish-Config-required">Publish Config</a>
+                                    <a class="nav-link scrollto" href="#Publish-Datatables-Config-And-Assets-required">Publish Datatables</a>
+                                    <a class="nav-link scrollto" href="#Publish-Example-Tags-and-Plugins-optional">Publish Examples</a>
+                                    <a class="nav-link scrollto" href="#Publish-Database-Migrations-optional">Publish Migrations</a>
+                                    <a class="nav-link scrollto" href="#Run-the-database-migrations-required">Run Migrations</a>
+                                    <a class="nav-link scrollto" href="#Symlink-public-folders-required">Symlink Folders</a>
+                                    <a class="nav-link scrollto" href="#Run-the-command-to-install-a-user-a-bot-and-the-AIML-data">Install Bot/Data</a>
+                                    <a class="nav-link scrollto" href="#Start-the-Application">Start the App</a>
+                                    <a class="nav-link scrollto" href="#Use">Use</a>
+                                    <a class="nav-link scrollto" href="#Migrating">Migrating</a>
+                                    <a class="nav-link scrollto" href="#Additional-Upgrade-Step-Custom-Tag">Migrate Step 1</a>
+                                    <a class="nav-link scrollto" href="#Additional-Upgrade-Step-Run-the-command-to-update-a-few-filenames-in-the-migrations-folder">Migrate Step 2</a>
+                                    <a class="nav-link scrollto" href="#Additional-Upgrade-Step-Run-the-command-to-update-the-user-to-an-admin-user">Migrate Step 3</a>
                                 </nav><!--//doc-menu-->
 	                        
                         </div>
@@ -148,15 +354,7 @@
         <div id="promo-block" class="promo-block">
             <div class="container">
                 <div class="promo-block-inner">
-                    <h3 class="promo-title text-center"><i class="fa fa-heart"></i> <a href="https://lemursite.com/hosted" target="_blank">Want a Chatbot in the simplest fasts way possible?</a></h3>
                     <div class="row">
-                        <div class="figure-holder col-lg-5 col-md-6 col-12">
-                            <div class="figure-holder-inner">
-                                <a href="https://lemursite.com/hosted" target="_blank"><img class="img-fluid" src="assets/images/help.jpg" alt="Host Bots" /></a>
-                                <a class="mask" href="https://lemursite.com/hosted"><i class="icon fa fa-heart pink"></i></a>
-
-                            </div>
-                        </div><!--//figure-holder-->
                         <div class="content-holder col-lg-7 col-md-6 col-12">
                             <div class="content-holder-inner">
                                 <div class="desc">
