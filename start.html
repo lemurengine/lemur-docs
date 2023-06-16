@@ -65,225 +65,64 @@
                 <div class="doc-body row">
                     <div class="doc-content col-md-9 col-12 order-1">
                         <div class="content-inner">
-                            <section id="download-section" class="doc-section">
-                                <h3 class="section-title">Download</h3>
-                                <div id="download-git"  class="section-block">
-                                    <h3 class="block-title">Install From GitHub</h3>
-                                    <p>You can download or clone the Lemur Engine code repository from our GitHub</p>
-                                    <a href="https://github.com/theramenrobotdiscocode/lemur-engine">https://github.com/theramenrobotdiscocode/lemur-engine</a>
-                                </div>
-                            </section><!--//doc-section-->
-
-
                             <section id="laravel" class="doc-section">
                                 <h2 class="section-title">Laravel</h2>
-                                <div id="local-installation"  class="section-block">
+                                <div id="laravel-div"  class="section-block">
                                     <p>The Lemur Engine is written in Laravel and can be developed and deployed like any Laravel application.</p>
-                                    <p>For more information visit: <a href="https://laravel.com/docs/7.x">https://laravel.com/docs/7.x</a> </p>
-                                    <p>To get you going as quickly as possible we have included a vagrant file so you can set Lemur Engine up on your own machine and get testing and developing in no time.</p>
+                                    <p>For more information visit: <a href="https://laravel.com/docs/9.x">https://laravel.com/docs/9.x</a> </p>
                                 </div>
                             </section><!--//doc-section-->
-
-                            <section id="vm-installation-section" class="doc-section">
-                                <h2 class="section-title">Setup using Vagrant</h2>
-                                <div id="vm-prerequisite"  class="section-block">
-                                    <h3 class="block-title">Prerequisite</h3>
-                                    <p>You will need the following installed on your machine to run the Lemur Engine locally.</p>
-                                    <ul>
-                                        <li><a href="https://www.virtualbox.org/" target="_blank">Virtual Box</a></li>
-                                        <li><a href="https://www.vagrantup.com/" target="_blank">Vagrant</a></li>
-                                    </ul>
-                                    <p>Follow the steps below to set this up on your machine.</p>
-                                </div>
-                                <div id="vm-step1"  class="section-block">
-                                    <h3 class="block-title">Step One</h3>
-                                    <p>Copy .env.sample to .env and fill in the details.</p>
-                                    <p>The .env.sample file has already has the default vagrant DB settings.</p>
-                                    <p>You may need to change these to match your settings.</p>
+                            <section id="install" class="doc-section">
+                                <h3 class="section-title">Install</h3>
+                                <div id="install-div"  class="section-block">
+                                    <h3 class="block-title">Install Using composer</h3>
+                                    <p>Once you have installed Laravel from inside your root run</p>
                                     <p><code>
-                                        DB_CONNECTION=mysql<br/>
-                                        DB_HOST=127.0.0.1<br/>
-                                        DB_PORT=3306<br/>
-                                        DB_DATABASE=lemurengine<br/>
-                                        DB_USERNAME=root<br/>
-                                        DB_PASSWORD=secret<br/>
+                                        composer require lemurengine/lemurbot
                                     </code></p>
                                 </div>
-
-                                <div id="vm-step2"  class="section-block">
-                                    <h3 class="block-title">Step Two</h3>
-                                    <p>Create an entry in your /etc/hosts file</p>
-                                    <div class="code-block">
-                                        <p><code>192.168.10.10 lemurengine.local</code></p>
-                                    </div><!--//code-block-->
-                                </div>
-
-                                <div id="vm-step3"  class="section-block">
-                                    <h3 class="block-title">Step Three</h3>
-                                    <p>Start the server, login and go to the root directory</p>
-                                    <div class="code-block">
-                                        <p><code>vagrant up<br/>
-                                            vagrant ssh<br/>
-                                            cd /vagrant
-                                        </code></p>
-                                    </div><!--//code-block-->
-                                </div>
-
-
-                                <div id="vm-step4"  class="section-block">
-                                    <h3 class="block-title">Step Four</h3>
-                                    <p>Create the database - the login details below are the default vagrant mysql settings. In this example the database is called 'lemurengine'.</p>
-                                    <div class="code-block">
-                                        <p><code>mysql -uroot -psecret</code></p>
-                                        <p><code>create database lemurengine;</code></p>
-                                    </div><!--//code-block-->
-                                </div>
-
-                                <div id="step5"  class="section-block">
-                                    <h3 class="block-title">Step Five</h3>
-                                    <p>On the VM inside the /vagrant directory run composer to install the dependencies.</p>
-                                    <div class="code-block">
-                                        <p><code>COMPOSER_MEMORY_LIMIT=-1 composer install</code></p>
-                                    </div><!--//code-block-->
-                                </div>
-
-                                <div id="step6"  class="section-block">
-                                    <h3 class="block-title">Step Six</h3>
-                                    <p>On the VM inside the /vagrant directory and run the following commands to set up Laravel</p>
-                                    <div class="code-block">
-                                        <p><code>php artisan key:generate</code></p>
-                                        <p><code>php artisan migrate:fresh --seed</code></p>
-                                        <p><code>php artisan storage:link</code></p>
-                                    </div><!--//code-block-->
-
-                                    <p>If you encounter a symlink() error when running the last command then exit the vm and try to run the same command from the project root in the host machine.</p>
-                                </div>
-
-                                <p>You should now be able to access Lemur Engine locally on <code>http://lemurengine.local</code></p>
-
                             </section><!--//doc-section-->
-                            <section id="access-section" class="doc-section">
-                                <h2 class="section-title">Access</h2>
-                                <div id="access-site"  class="section-block">
-
-                                    <p>The default local url is http://lemurengine.local</p>
-                                    <p>You should be able to log in as an admin the following:</p>
-                                    <div class="code-block">
-                                        <p><code>User: admin@lemurengine.local<br/>
-Password: password</code></p>
-                                    </div><!--//code-block-->
-                                    <p>Change this password either directly using <a href="https://laravel.com/docs/7.x/artisan">tinker</a>. Or using the forgotten email feature at the front of the site.</p>
-                                </div>
-                            </section>
-
-                            <section id="testing-section" class="doc-section">
-                                <h2 class="section-title">Testing</h2>
-                                <div id="setup-tests"  class="section-block">
-
-                                    <h3 class="block-title">Setup</h3>
-                                    <p>Copy .env to .env-testing</p>
-                                    <p>An example .env.testing file has been included with the default vagrant DB settings.</p>
-                                    <p>You should change these to match your settings.</p>
+                            <section id="build" class="doc-section">
+                                <h3 class="section-title">Building Commands</h3>
+                                <div id="build-div"  class="section-block">
+                                    <h3 class="block-title">Run the following commands to build the assets and install the app</h3>
+                                    <p>(These instructions assume a fresh install - if upgrading then please check packagist for more indepth instructions)</p>
                                     <p><code>
-DB_CONNECTION=testing<br/>
-DB_HOST=127.0.0.1<br/>
-DB_PORT=3306<br/>
-DB_DATABASE=testing<br/>
-DB_USERNAME=root<br/>
-DB_PASSWORD=secret<br/>
-                                    </code></p>
-
-                                    <p>Create the testing database - the login details below are the default vagrant mysql settings.</p>
-                                    <p>This will create a database which is used during testing so that you dont destroy the data in your actual database.</p>
-                                    <div class="code-block">
-                                        <p><code>mysql -uroot -psecret</code></p>
-                                        <p><code>create database testing;</code></p>
-                                    </div><!--//code-block-->
-                                </div>
-                                <div id="test-all"  class="section-block">
-                                    <h3 class="block-title">Run All Tests</h3>
-                                    <p>Run the to every test in the collection.</p>
-                                    <p>From the root directory run:</p>
-                                    <p><code>
-                                        php artisan test --testsuite=All
+                                        php artisan vendor:publish --tag=lemurbot-template --force
+                                        php artisan vendor:publish --tag=lemurbot-auth --force
+                                        php artisan vendor:publish --tag=lemurbot-assets
+                                        php artisan vendor:publish --tag=lemurbot-widgets
+                                        php artisan vendor:publish --tag=lemurbot-config
+                                        hp artisan vendor:publish --tag=datatables
+                                        php artisan vendor:publish --tag=datatables-buttons
+                                        php artisan vendor:publish --tag=datatables-html
+                                        php artisan vendor:publish --tag=datatables-fractal
+                                        php artisan vendor:publish --tag=lemurbot-examples
+                                        php artisan vendor:publish --tag=lemurbot-migrations
+                                        php artisan lemur:upgrade 9.0.0
+                                        php artisan migrate
+                                        php artisan storage:link
                                     </code></p>
                                 </div>
-                                <div id="test-aiml"  class="section-block">
-                                    <h3 class="block-title">AIML Conversations Tests</h3>
-                                    <p>Run the following to test the AIML conversation flow.</p>
-                                    <p>These are high level tests which test that for a given conversation input you get the correct bot output.</p>
-                                    <p>From the /vagrant directory run:</p>
+                            </section><!--//doc-section-->
+                            <section id="run" class="doc-section">
+                                <h3 class="section-title">Run Locally</h3>
+                                <div id="run-div"  class="section-block">
+                                    <h3 class="block-title">Run the following commands to buid locally</h3>
                                     <p><code>
-                                        php artisan test --testsuite=Aiml
+                                        php artisan serve
                                     </code></p>
                                 </div>
-                                <div id="test-tags"  class="section-block">
-                                    <h3 class="block-title">Tag Class Tests</h3>
-                                    <p>Run the following to test the Tag classes.</p>
-                                    <p>From the /vagrant directory run:</p>
-                                    <p><code>
-                                        php artisan test --testsuite=Tags
-                                    </code></p>
+                            </section><!--//doc-section-->
+                            <section id="version" class="doc-section">
+                                <h3 class="section-title">Versioning</h3>
+                                <div id="version-div"  class="section-block">
+                                    <h3 class="block-title">Laravel Versions</h3>
+                                    <p>This package is built for Laravel 9.x
+                                        Compatible Laravel versions are reflected in the LemurBot versions.
+                                        LemurBot 9.x versions are compatible with Laravel 9.x versions
+                                    </p>
                                 </div>
-                                <div id="test-unit"  class="section-block">
-                                    <h3 class="block-title">Unit Tests</h3>
-                                    <p>Run the following to run any unit tests.</p>
-                                    <p>From the /vagrant directory run:</p>
-                                    <p><code>
-                                        php artisan test --testsuite=Unit
-                                    </code></p>
-                                </div>
-                                <div id="test-request"  class="section-block">
-                                    <h3 class="block-title">Request Class Tests</h3>
-                                    <p>Run the following to unit test the request classes.</p>
-                                    <p>From the /vagrant directory run:</p>
-                                    <p><code>
-                                        php artisan test --testsuite=Requests
-                                    </code></p>
-                                </div>
-                                <div id="test-feature"  class="section-block">
-                                    <h3 class="block-title">Feature Tests</h3>
-                                    <p>Run the following to run any feature tests.</p>
-                                    <p>From the /vagrant directory run:</p>
-                                    <p><code>
-                                        php artisan test --testsuite=Feature
-                                    </code></p>
-                                </div>
-                                <div id="test-repositories"  class="section-block">
-                                    <h3 class="block-title">Repository Tests</h3>
-                                    <p>Run the following to run any repository tests.</p>
-                                    <p>From the /vagrant directory run:</p>
-                                    <p><code>
-                                        php artisan test --testsuite=Repositories
-                                    </code></p>
-                                </div>
-                                <div id="test-controller"  class="section-block">
-                                    <h3 class="block-title">Controller Tests</h3>
-                                    <p>Run the following to run any controller tests.</p>
-                                    <p>From the /vagrant directory run:</p>
-                                    <p><code>
-                                        php artisan test --testsuite=Controllers
-                                    </code></p>
-                                </div>
-                                <div id="test-api"  class="section-block">
-                                    <h3 class="block-title">API Tests</h3>
-                                    <p>Run the following to run any api tests.</p>
-                                    <p>From the /vagrant directory run:</p>
-                                    <p><code>
-                                        php artisan test --testsuite=APIs
-                                    </code></p>
-                                </div>
-                                <div id="test-policy"  class="section-block">
-                                    <h3 class="block-title">Policy Tests</h3>
-                                    <p>Run the following to run any policy tests.</p>
-                                    <p>From the /vagrant directory run:</p>
-                                    <p><code>
-                                        php artisan test --testsuite=Policies
-                                    </code></p>
-                                </div>
-
-
-
                             </section><!--//doc-section-->
 
                         </div><!--//content-inner-->
@@ -292,40 +131,12 @@ DB_PASSWORD=secret<br/>
                         <div id="doc-nav" class="doc-nav">
 	                        
 	                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
-	                                <a class="nav-link scrollto" href="#download-section">Download</a>
 
-	                                <a class="nav-link scrollto" href="#laravel">Laravel</a>
-
-                                    <a class="nav-link scrollto" href="#vm-installation-section">Setup using Vagrant</a>
-                                    <nav class="doc-sub-menu nav flex-column">
-                                        <a class="nav-link scrollto" href="#vm-prerequisite">Prerequisites</a>
-                                        <a class="nav-link scrollto" href="#vm-step1">Step One</a>
-                                        <a class="nav-link scrollto" href="#vm-step2">Step Two</a>
-                                        <a class="nav-link scrollto" href="#vm-step3">Step Three</a>
-                                        <a class="nav-link scrollto" href="#vm-step4">Step Four</a>
-                                        <a class="nav-link scrollto" href="#vm-step5">Step Five</a>
-                                        <a class="nav-link scrollto" href="#vm-step6">Step Six</a>
-
-                                    </nav><!--//nav-->
-                                    <a class="nav-link scrollto" href="#access-section">Access the site</a>
-
-                                    <a class="nav-link scrollto" href="#testing-section">Testing</a>
-                                    <nav class="doc-sub-menu nav flex-column">
-                                        <a class="nav-link scrollto" href="#test-setup">Setup</a>
-                                        <a class="nav-link scrollto" href="#test-all">Test Everything</a>
-                                        <a class="nav-link scrollto" href="#test-aiml">AIML Conversations Tests</a>
-                                        <a class="nav-link scrollto" href="#test-tags">Tag Class Tests</a>
-                                        <a class="nav-link scrollto" href="#test-unit">Unit Tests</a>
-                                        <a class="nav-link scrollto" href="#test-request">Request Class Tests</a>
-                                        <a class="nav-link scrollto" href="#test-feature">Feature Tests</a>
-                                        <a class="nav-link scrollto" href="#test-repositories">Repository Tests</a>
-                                        <a class="nav-link scrollto" href="#test-controller">Controller Tests</a>
-                                        <a class="nav-link scrollto" href="#test-api">API Tests</a>
-                                        <a class="nav-link scrollto" href="#test-policy">Policy Tests</a>
-                                    </nav><!--//nav-->
-
-
-
+                                    <a class="nav-link scrollto" href="#laravel">Laravel</a>
+                                    <a class="nav-link scrollto" href="#version">Versioning</a>
+	                                <a class="nav-link scrollto" href="#install">Install</a>
+                                    <a class="nav-link scrollto" href="#build">Build</a>
+                                    <a class="nav-link scrollto" href="#run">Run</a>
 
                                 </nav><!--//doc-menu-->
 	                        
@@ -350,9 +161,6 @@ DB_PASSWORD=secret<br/>
                         <div class="content-holder col-lg-7 col-md-6 col-12">
                             <div class="content-holder-inner">
                                 <div class="desc">
-                                    <h4 class="content-title"><strong> Hosted Solution</strong></h4>
-                                    <p>Check out our <a href="https://lemursite.com/hosted" target="_blank">Hosted Solutions</a> - We have a number of subscription plans available so you can get going in no time - <strong class="highlight">with no coding experience</strong>. It's the simplest of way to get going quickly. </p>
-
                                     <h4 class="content-title"><strong> Chatbot Consultants</strong></h4>
                                     <p>If you need help with <strong class="highlight">customisation</strong> or a <strong class="highlight">bespoke feature</strong> - then get in touch with us over that theramenrobotdiscocode.com and let's see how we can help.</p>
                                     <a class="btn btn-cta" href="https://theramenrobotdiscocode.com/p/quote/" target="_blank"><i class="fas fa-external-link-alt"></i> Get In Touch</a>
