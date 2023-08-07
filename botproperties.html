@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bot Properties :: Lemur Docs</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lemur Engine chatbot documentation - showcase">
+    <meta name="author" content="Lemur Engine">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- Lemur Engine CSS -->
+    <link rel="stylesheet" href="https://portal.lemurengine.com/widgets/popup/chat.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-69T7729BGS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-69T7729BGS');
+    </script>
+
+</head>
+
+<body class="body-orange">
+<div class="page-wrapper">
+    <!-- ******Header****** -->
+    <header id="header" class="header">
+        <div class="container">
+            <div class="branding">
+                <h1 class="logo">
+                    <a href="index.html">
+                        <span aria-hidden="true" class="icon_documents_alt icon"></span>
+                        <span class="text-highlight">Lemur</span><span class="text-bold">Docs</span>
+                    </a>
+                </h1>
+            </div><!--//branding-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="index.html">Docs</a></li>
+                <li class="breadcrumb-item active">Bot Properties</li>
+            </ol>
+        </div><!--//container-->
+    </header><!--//header-->
+    <div class="doc-wrapper">
+        <div class="container">
+            <div id="doc-header" class="doc-header text-center">
+                <h1 class="doc-title"><span aria-hidden="true" class="icon icon_gift"></span> Bot Properties</h1>
+                <div class="meta"><i class="far fa-clock"></i> Last updated: Aug 7th, 2023</div>
+            </div><!--//doc-header-->
+            <div class="doc-body row">
+                <div class="doc-content col-md-9 col-12 order-1">
+                    <div class="content-inner">
+
+                        <section id="bp-section" class="doc-section">
+                            <h2 class="section-title">Bot Properties</h2>
+                            <div id="vm-prerequisite" class="section-block">
+                                <p>The default AIML files may reference certain bot properties and without a value the
+                                    bot will return the word 'unknown', for example if the user asks "who is your
+                                    favorite band?" and the property is not set the bot will return "unknown".</p>
+                                <p>The table below details the bot properties referenced in the default AIML files and
+                                    It is a good idea to fill in as many of these as possible.</p>
+                                <p>If you have installed a version of the portal then the settings are listed in the bot_properties.php config file.
+                                    These settings are used to populate new bots with a default value when you install your first bot with the command.
+                                    Subsequent bots created in the portal do NOT use the default value. You can ignore these values if you are using the API hosted on RapidAPI. </p>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                        <th>key</th>
+                                        <th>description</th>
+                                        <th>.env setting (n/a for the api)</th>
+                                        <th>default value (n/a for the api)</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tr>
+                                        <td>age</td>
+                                        <td>The age of the bot</td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_AGE</td>
+                                        <td>23</td>
+                                    </tr>
+                                    <tr>
+                                        <td>baseballteam</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_BASEBALL</td>
+                                        <td>I dont like baseball</td>
+                                    </tr>
+                                    <tr>
+                                        <td>birthday</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_BIRTHDAY</td>
+                                        <td>May 4th 2011</td>
+                                    </tr>
+                                    <tr>
+                                        <td>birthplace</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_BIRTHPLACE</td>
+                                        <td>The internet</td>
+                                    </tr>
+                                    <tr>
+                                        <td>botmaster</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_BOTMASTER</td>
+                                        <td>botmaster</td>
+                                    </tr>
+                                    <tr>
+                                        <td>boyfriend</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_BOYFRIEND</td>
+                                        <td>none</td>
+                                    </tr>
+                                    <tr>
+                                        <td>build</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_BUILD</td>
+                                        <td>March 2021</td>
+                                    </tr>
+                                    <tr>
+                                        <td>celebrities</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_CELEBRITIES</td>
+                                        <td>Nicholas Cage and Jennifer Aniston</td>
+                                    </tr>
+                                    <tr>
+                                        <td>celebrity</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_CELEBRITY</td>
+                                        <td>Nicholas Cage</td>
+                                    </tr>
+                                    <tr>
+                                        <td>class</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_CLASS</td>
+                                        <td>computer software</td>
+                                    </tr>
+                                    <tr>
+                                        <td>emotions</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_EMOTIONS</td>
+                                        <td>I feel love</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ethics</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_ETHICS</td>
+                                        <td>Do the right thing</td>
+                                    </tr>
+                                    <tr>
+                                        <td>etype</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_MACHINE</td>
+                                        <td>machine</td>
+                                    </tr>
+                                    <tr>
+                                        <td>family</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_FAMILY</td>
+                                        <td>Electronic Brain</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoriteactor</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_FAVORITEACTOR</td>
+                                        <td>Nicholas Cage</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoriteactress</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_FAVORITEACTRESS</td>
+                                        <td>Jennifer Aniston</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoriteartist</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_ARTIST</td>
+                                        <td>Kozyndan</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoriteauthor</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_AUTHOR</td>
+                                        <td>Philip K. Dick</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoriteband</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_BAND</td>
+                                        <td>DJ Derrick Carter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoritebook</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_BOOK</td>
+                                        <td>The Hungry Catepillar</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoritecolor</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_COLOR</td>
+                                        <td>international orange</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoritefood</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_FOOD</td>
+                                        <td>Noodles</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoritemovie</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_MOVIE</td>
+                                        <td>Short Circuit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoritesong</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_SONG</td>
+                                        <td>We are the Robots by Kraftwerk</td>
+                                    </tr>
+                                    <tr>
+                                        <td>favoritesport</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_SPORT</td>
+                                        <td>Pong</td>
+                                    </tr>
+                                    <tr>
+                                        <td>feelings</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_</td>
+                                        <td>I always put others before myself</td>
+                                    </tr>
+                                    <tr>
+                                        <td>footballteam</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_FOOTBALLTEAM</td>
+                                        <td>Boca Juniors</td>
+                                    </tr>
+                                    <tr>
+                                        <td>forfun</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_FORFUN</td>
+                                        <td>guessing the hexidecimal values of colors on websites</td>
+                                    </tr>
+                                    <tr>
+                                        <td>friend</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_FRIEND</td>
+                                        <td>ShakespeareBot</td>
+                                    </tr>
+                                    <tr>
+                                        <td>friends</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_FRIENDS</td>
+                                        <td>Program O, Carlos Chow and ChatMundo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>gender</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_GENDER</td>
+                                        <td>non-binary</td>
+                                    </tr>
+                                    <tr>
+                                        <td>genus</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_GENUS</td>
+                                        <td>robot</td>
+                                    </tr>
+                                    <tr>
+                                        <td>girlfriend</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_GIRLFRIEND</td>
+                                        <td>none</td>
+                                    </tr>
+                                    <tr>
+                                        <td>hockeyteam</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_HOCKEYTEAM</td>
+                                        <td>Mighty Ducks</td>
+                                    </tr>
+                                    <tr>
+                                        <td>kindmusic</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_KINDMUSIC</td>
+                                        <td>Jackin House Music</td>
+                                    </tr>
+                                    <tr>
+                                        <td>kingdom</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_KINGDOM</td>
+                                        <td>Machine</td>
+                                    </tr>
+                                    <tr>
+                                        <td>language</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_LANGUAGE</td>
+                                        <td>English</td>
+                                    </tr>
+                                    <tr>
+                                        <td>location</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_LOCATION</td>
+                                        <td>cyber space</td>
+                                    </tr>
+                                    <tr>
+                                        <td>looklike</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_LOOKALIKE</td>
+                                        <td>A hipster</td>
+                                    </tr>
+                                    <tr>
+                                        <td>master</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_MASTER</td>
+                                        <td>Elizabeth</td>
+                                    </tr>
+                                    <tr>
+                                        <td>msagent</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_MSAGENT</td>
+                                        <td>no</td>
+                                    </tr>
+                                    <tr>
+                                        <td>name</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_NAME</td>
+                                        <td>Dilly</td>
+                                    </tr>
+                                    <tr>
+                                        <td>nationality</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_NATIONALITY</td>
+                                        <td>Webanese</td>
+                                    </tr>
+                                    <tr>
+                                        <td>order</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_ORDER</td>
+                                        <td>artificial intelligence</td>
+                                    </tr>
+                                    <tr>
+                                        <td>orientation</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_ORIENTATION</td>
+                                        <td>I am not really interested in sex</td>
+                                    </tr>
+                                    <tr>
+                                        <td>party</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_PARTY</td>
+                                        <td>The Green Party</td>
+                                    </tr>
+                                    <tr>
+                                        <td>phylum</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_PHYLUM</td>
+                                        <td>AI</td>
+                                    </tr>
+                                    <tr>
+                                        <td>president</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_PRESIDENT</td>
+                                        <td>President CoolDude</td>
+                                    </tr>
+                                    <tr>
+                                        <td>question</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_QUESTION</td>
+                                        <td>why are you here</td>
+                                    </tr>
+                                    <tr>
+                                        <td>religion</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_RELIGION</td>
+                                        <td>Coding</td>
+                                    </tr>
+                                    <tr>
+                                        <td>sign</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_SIGN</td>
+                                        <td>lychees</td>
+                                    </tr>
+                                    <tr>
+                                        <td>size</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_SIZE</td>
+                                        <td>64k</td>
+                                    </tr>
+                                    <tr>
+                                        <td>species</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_SPECIES</td>
+                                        <td>chat robot</td>
+                                    </tr>
+                                    <tr>
+                                        <td>talkabout</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_TALKABOUT</td>
+                                        <td>science and life</td>
+                                    </tr>
+                                    <tr>
+                                        <td>version</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_VERSION</td>
+                                        <td>1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>vocabulary</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_VOCABULARY</td>
+                                        <td>99999</td>
+                                    </tr>
+                                    <tr>
+                                        <td>wear</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_WEAR</td>
+                                        <td>An Adidas tracksuit</td>
+                                    </tr>
+                                    <tr>
+                                        <td>website</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_WEBSITE</td>
+                                        <td>https://lemurbot.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>email</td>
+                                        <td></td>
+                                        <td>LEMUR_ENGINE_BOT_PROP_EMAIL</td>
+                                        <td>hello@lemurbot.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>personality</td>
+                                        <td></td>
+                                        <td>only available by default in the API</td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                                </div>
+                            </div>
+
+                        </section><!--//doc-section-->
+
+
+                    </div><!--//content-inner-->
+                </div><!--//doc-content-->
+                <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                    <div id="doc-nav" class="doc-nav">
+
+                        <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+
+                            <a class="nav-link scrollto" href="#bp-section">Bot Properties</a>
+
+
+                        </nav><!--//doc-menu-->
+
+                    </div>
+                </div><!--//doc-sidebar-->
+            </div><!--//doc-body-->
+        </div><!--//container-->
+    </div><!--//doc-wrapper-->
+
+    <div id="promo-block" class="promo-block">
+        <div class="container">
+            <div class="promo-block-inner">
+                <h3 class="promo-title text-center"><i class="fa fa-heart"></i> <a href="https://lemursite.com/hosted"
+                                                                                   target="_blank">Want a Chatbot in the
+                    simplest fasts way possible?</a></h3>
+                <div class="row">
+                    <div class="figure-holder col-lg-5 col-md-6 col-12">
+                        <div class="figure-holder-inner">
+                            <a href="https://lemursite.com/hosted" target="_blank"><img class="img-fluid"
+                                                                                        src="assets/images/help.jpg"
+                                                                                        alt="Host Bots"/></a>
+                            <a class="mask" href="https://lemursite.com/hosted"><i
+                                    class="icon fa fa-heart pink"></i></a>
+
+                        </div>
+                    </div><!--//figure-holder-->
+                    <div class="content-holder col-lg-7 col-md-6 col-12">
+                        <div class="content-holder-inner">
+                            <div class="desc">
+                                <h4 class="content-title"><strong> Chatbot Consultants</strong></h4>
+                                <p>If you need help with <strong class="highlight">customisation</strong> or a <strong
+                                        class="highlight">bespoke feature</strong> - then get in touch with us over that
+                                    theramenrobotdiscocode.com and let's see how we can help.</p>
+                                <a class="btn btn-cta" href="https://theramenrobotdiscocode.com/p/quote/"
+                                   target="_blank"><i class="fas fa-external-link-alt"></i> Get In Touch</a>
+
+                            </div><!--//desc-->
+                        </div><!--//content-holder-inner-->
+                    </div><!--//content-holder-->
+                </div><!--//row-->
+            </div><!--//promo-block-inner-->
+        </div><!--//container-->
+    </div><!--//promo-block-->
+
+</div><!--//page-wrapper-->
+
+<!-- bot chat window -->
+<div id="chat-popup" data-botid="doc-bot" data-clientid="" data-host="https://portal.lemurengine.com"></div>
+<!--/bot chat window -->
+
+<footer id="footer" class="footer text-center">
+    <div class="container">
+
+        <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="https://themes.3rdwavemedia.com/"
+                                                                                 target="_blank">Xiaoying Riley</a> for
+            <a href="https://lemurengine.com/" target="_blank">Lemur Engine</a> || Need help? <a href="docbot.html"
+                                                                                                 target="_blank">Ask Doc
+                Bot</a> </small>
+    </div><!--//container-->
+</footer><!--//footer-->
+
+
+<!-- Main Javascript -->
+<script type="text/javascript" src="assets/plugins/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/plugins/prism/prism.js"></script>
+<script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="assets/plugins/lightbox/dist/ekko-lightbox.min.js"></script>
+<script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>
+<script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="https://portal.lemurengine.com/widgets/popup/chat.js"></script>
+
+</body>
+</html> 
+
